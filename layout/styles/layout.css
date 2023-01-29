@@ -14,7 +14,7 @@ File: Layout CSS
 @import url("featured_slide.css");
 
 html{overflow-y:scroll;}
-body{margin:0; padding:0; font-size:13px; font-family:verdana, Arial, Helvetica, sans-serif; color:#333333; background-color:#FFFFFF;}
+body{margin:0; padding:0; font-size:13px; font-family:verdana, Arial, Helvetica, sans-serif; color:#333333; background-color:#F2F3AE;}
 
 .justify{text-align:justify;}
 .bold{font-weight:bold;}
@@ -25,7 +25,7 @@ body{margin:0; padding:0; font-size:13px; font-family:verdana, Arial, Helvetica,
 .clear{clear:both;}
 br.clear{clear:both; margin-top:-15px;}
 
-a{color:#F5003D; background-color:#FFFFFF; outline:none; text-decoration:none;}
+a{color:#F5003D; background-color:#F2F3AE; outline:none; text-decoration:none;}
 
 .fl_left, .imgl{float:left;}
 .fl_right, .imgr{float:right;}
@@ -40,10 +40,10 @@ img{display:block; margin:0; padding:0; border:none;}
 div.wrapper{display:block; width:100%; margin:0; text-align:left;}
 div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, div.wrapper h6{margin:0; padding:0; font-size:20px; font-weight:normal; line-height:normal; font-family:Georgia, "Times New Roman", Times, serif;}
 .col1{color:#CCCCCC; background-color:#000000;}
-.col2, .col2 a{color:#FFFFFF; background-color:#B2C629;}
-.col3{color:#777777; background-color:#FFFFFF;}
-.col3 a{color:#95AD19; background-color:#FFFFFF;}
-.col4{color:#FFFFFF; background-color:#000000;}
+.col2, .col2 a{color:#F2F3AE; background-color:#B2C629;}
+.col3{color:#777777; background-color:#F2F3AE;}
+.col3 a{color:#95AD19; background-color:#F2F3AE;}
+.col4{color:#F2F3AE; background-color:#000000;}
 .col4 a{color:#95AD19; background-color:#000000;}
 .col5, .col5 a{color:#333333; background-color:#95AD19;}
 
@@ -81,7 +81,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 .homepage li h2 img{float:left; margin:-15px 8px 0 0; padding:5px; border:1px solid #999999;}
 .homepage p{margin:0 0 25px 0; padding:0; line-height:1.6em;}
 .homepage p.readmore{display:block; text-align:right; line-height:normal; font-weight:bold;}
-.homepage p.readmore a{padding:8px 15px 10px; color:#FFFFFF; background-color:#95AD19;}
+.homepage p.readmore a{padding:8px 15px 10px; color:#F2F3AE; background-color:#95AD19;}
 
 /* ----------------------------------------------Content Block------------------------------------- */
 
@@ -119,7 +119,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 #footer h2{margin:0 0 15px 0; padding:0 0 8px 0; font-size:18px; color:#CCCCCC; background-color:#000000; border-bottom:1px dotted #CCCCCC;}
 #footer .box{display:block; float:right; width:250px; margin:0 0 0 25px; padding:0;}
 #footer .box1{display:block; float:left; width:400px; line-height:1.6em;}
-#footer .box1 .imgl{border:1px solid #CCCCCC; padding:5px; color:#FFFFFF; background-color:#000000;}
+#footer .box1 .imgl{border:1px solid #CCCCCC; padding:5px; color:#F2F3AE; background-color:#000000;}
 #footer .contactdetails li{margin:0 0 8px 0;}
 #footer .flickrbox, #footer .flickrbox .wrap{display:block; width:260px;}
 #footer .flickrbox .wrap .fix{clear:both;}
