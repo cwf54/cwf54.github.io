@@ -40,12 +40,12 @@ img{display:block; margin:0; padding:0; border:none;}
 div.wrapper{display:block; width:100%; margin:0; text-align:left;}
 div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, div.wrapper h6{margin:0; padding:0; font-size:20px; font-weight:normal; line-height:normal; font-family:Georgia, "Times New Roman", Times, serif;}
 .col1{color:#CCCCCC; background-color:#000000;}
-.col2, .col2 a{color:#F2F3AE; background-color:#B2C629;}
+.col2, .col2 a{color:#F2F3AE; background-color:#F5003D;}
 .col3{color:#777777; background-color:#F2F3AE;}
-.col3 a{color:#95AD19; background-color:#F2F3AE;}
+.col3 a{color:#F5003D; background-color:#F2F3AE;}
 .col4{color:#F2F3AE; background-color:#000000;}
-.col4 a{color:#95AD19; background-color:#000000;}
-.col5, .col5 a{color:#333333; background-color:#95AD19;}
+.col4 a{color:#F5003D; background-color:#000000;}
+.col5, .col5 a{color:#333333; background-color:#F5003D;}
 
 /* ----------------------------------------------Generalise------------------------------------- */
 
@@ -57,7 +57,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 #header #logo{display:block; float:left; width:300px; overflow:hidden;}
 #header #logo h1, #header #logo p{margin:0; padding:0; line-height:normal;}
 #header #logo h1{font-size:36px; text-transform:uppercase;}
-#header h1 a{color:#B2C629; background-color:#000000;}
+#header h1 a{color:#F5003D; background-color:#000000;}
 
 /* ----------------------------------------------BreadCrumb------------------------------------- */
 
@@ -81,7 +81,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 .homepage li h2 img{float:left; margin:-15px 8px 0 0; padding:5px; border:1px solid #999999;}
 .homepage p{margin:0 0 25px 0; padding:0; line-height:1.6em;}
 .homepage p.readmore{display:block; text-align:right; line-height:normal; font-weight:bold;}
-.homepage p.readmore a{padding:8px 15px 10px; color:#F2F3AE; background-color:#95AD19;}
+.homepage p.readmore a{padding:8px 15px 10px; color:#F2F3AE; background-color:#F5003D;}
 
 /* ----------------------------------------------Content Block------------------------------------- */
 
@@ -94,9 +94,9 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 #comments .commentlist ul{margin:0; padding:0; list-style:none;}
 #comments .commentlist li.comment_odd, #comments .commentlist li.comment_even{margin:0 0 10px 0; padding:15px; list-style:none;}
 #comments .commentlist li.comment_odd{color:#666666; background-color:#F7F7F7;}
-#comments .commentlist li.comment_odd a{color:#95AD19; background-color:#F7F7F7;}
+#comments .commentlist li.comment_odd a{color:#F5003D; background-color:#F7F7F7;}
 #comments .commentlist li.comment_even{color:#666666; background-color:#E8E8E8;}
-#comments .commentlist li.comment_even a{color:#95AD19; background-color:#E8E8E8;}
+#comments .commentlist li.comment_even a{color:#F5003D; background-color:#E8E8E8;}
 #comments .commentlist .author .name{font-weight:bold;}
 #comments .commentlist .submitdate{font-size:smaller;}
 #comments .commentlist p{margin:10px 5px 10px 0; padding:0; font-weight:normal; text-transform:none;}
