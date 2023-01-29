@@ -57,7 +57,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 #header #logo{display:block; float:left; width:300px; overflow:hidden;}
 #header #logo h1, #header #logo p{margin:0; padding:0; line-height:normal;}
 #header #logo h1{font-size:36px; text-transform:uppercase;}
-#header h1 a{color:#F5003D; background-color:#000000;}
+#header h1 a{color:#F5003D; background-color:#5BC0EB;}
 
 /* ----------------------------------------------BreadCrumb------------------------------------- */
 
@@ -119,7 +119,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 #footer h2{margin:0 0 15px 0; padding:0 0 8px 0; font-size:18px; color:#CCCCCC; background-color:#000000; border-bottom:1px dotted #CCCCCC;}
 #footer .box{display:block; float:right; width:250px; margin:0 0 0 25px; padding:0;}
 #footer .box1{display:block; float:left; width:400px; line-height:1.6em;}
-#footer .box1 .imgl{border:1px solid #CCCCCC; padding:5px; color:#F2F3AE; background-color:#000000;}
+#footer .box1 .imgl{border:1px solid #CCCCCC; padding:5px; color:#F2F3AE; background-color:#5BC0EB;}
 #footer .contactdetails li{margin:0 0 8px 0;}
 #footer .flickrbox, #footer .flickrbox .wrap{display:block; width:260px;}
 #footer .flickrbox .wrap .fix{clear:both;}
