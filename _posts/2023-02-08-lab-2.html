@@ -63,7 +63,13 @@ background: '/img/posts/05.jpg'
 <p>Now that implementing commands is more natural, it is helpful to set up a notification handler, such that the string received form the Arduino can be received automatically (Notice that in the previous two examples I had to store the string into a variable "s" manually)</p>
 <p>For notifications I make use of two already existing functions: start_notify() and stop_notify(). Calling start_notify() required a notification handler. This is a callback function which automatically stores the received string. To see what the notification handler has stored, I print that variable. Here is the notification handler working with the GET_TIME_MILLIS command that we got working earlier.</p>
 <p></p>
-<p></p>
+<div style="position:relative;width:fit-content;height:fit-content;">
+    <a style="position:absolute;top:20px;right:1rem;opacity:0.8;" href="https://clipchamp.com/watch/J76ihkjY5sS?utm_source=embed&utm_medium=embed&utm_campaign=watch">
+        <img style="height:22px;" src="https://clipchamp.com/e.svg" alt="Made with Clipchamp" />
+    </a>
+    <iframe allow="autoplay;" allowfullscreen style="border:none" src="https://clipchamp.com/watch/J76ihkjY5sS/embed" width="640" height="360"></iframe>
+</div>
+<p>To stop the notification handler, you just call stop_notify().</p>
 
 <h2 class="section-heading">Get Temperature Command</h2>
 <h2 class="section-heading">Limitations</h2>
