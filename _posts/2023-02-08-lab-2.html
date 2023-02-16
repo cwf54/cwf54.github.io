@@ -19,7 +19,7 @@ background: '/img/posts/05.jpg'
 
 <h2 class="section-heading">Configurations</h2>
 <!-- artemis mac address screenshot -->
-<img class="img-fluid" src="img/lab2pics/MACaddress.jpg" alt="..." /> 
+<img class="img-fluid" src="/img/lab2pics/MACaddress.jpg" alt="..." /> 
 
 <p>The first step was finding the Artemis's MAC address. Upon running the given Arduino program, the device's MAC address is printed in the Serial Monitor. This MAC address is then stored in connections.yaml on the Python side so that my laptop will know which device to search for.</p>
 <p>I then generated a new UUID and stored it in both the Python and Arduino Programs</p>
@@ -46,7 +46,7 @@ background: '/img/posts/05.jpg'
 <p>After successfully getting through the demo, it was time to implement my own commands starting with an echo command. The Python program sends this command along with a string, and the Arduino should Echo the string back. Here is my code for how the Arduino handles an ECHO command:</p>
 <script src="https://gist.github.com/cwf54/a533eddb375c1170d08fb403db529db5.js"></script>
 <p>To verify, here is what the response looks like in the the Serial Monitor and Jupyter Lab.</p>
-<img class="img-fluid" src="img/lab2pics/ECHOcommand.jpg" alt="..." /> 
+<img class="img-fluid" src="/img/lab2pics/ECHOcommand.jpg" alt="..." /> 
 <img class="img-fluid" src="/img/posts/05.jpg" alt="..." /> 
 
 
@@ -55,7 +55,7 @@ background: '/img/posts/05.jpg'
 <h2 class="section-heading">Get Time Command</h2>
 <p>To implement a command that returns a time stamp, I use an Arduino function called millis() which returns the number of milliseconds that have passed since the Arduino last restarted. </p>
 <script src="https://gist.github.com/cwf54/e5e1a8d9ce5264b996b739cb4b1a7ac8.js"></script>
-<img class="img-fluid" src="img/lab2pics/TIMEcommand.jpg" alt="..."/> 
+<img class="img-fluid" src="/img/lab2pics/TIMEcommand.jpg" alt="..."/> 
 <p></p>
 <p></p>
 
