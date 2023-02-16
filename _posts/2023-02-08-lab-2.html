@@ -7,13 +7,10 @@ background: '/img/posts/BTbg.jpg'
 ---
 
 <h2 class="section-heading">Pre-Lab</h2>
-<p>The set up for this Bluetooth lab requires running a python script on a computer and an Arduino sketch on the Artemis. To run the Python scripts, we are using a virtual environment software called Jupyter Lab. When Bluetooth is configured, the Python program running on my computer can send and receive messages to and from the Artemis. </p>
-<p>There was some struggle with getting this system set up, especially because it was believed that the softwares were not compatible with Windows 11. I initially set everything up on the lab computer, along with many other people in my lab section. We found however that there were still connection problems, as everyone's boards seemed to be connecting to everyone else's computers.</p>
-<p>However, thanks to the wonderful TAs and collaborative efforts on Ed Discussion, a solution to setting up Jupyter Lab on Windows 11 was found using Windows Subsystem for Linux (WSL). </p>
-<p>We were given a Codebase for this lab which provided both a Python and an Arduino demo, and could already send a few commands and messages between the devices given that the configurations were correct. </p>
+<p>The set up for this Bluetooth lab requires running a python script on a computer and an Arduino sketch on the Artemis. To run the Python scripts, we are using a virtual environment software called Jupyter Lab. When Bluetooth is configured, the Python program running on my computer can send any of a set of fixed commands to and receive a response from the Artemis. </p>
+<p>There was some struggle with getting this system set up, but thanks to the wonderful TAs and collaborative efforts on Ed Discussion, a solution to setting up Jupyter Lab on Windows 11 was found using Windows Subsystem for Linux (WSL). </p>
+<p>We were given a Codebase for this lab which provided both a Python and an Arduino demo, and could already send a few commands and messages between the devices. </p>
 <p>Before sending any commands or messages to each other, the devices must establish a connection. This is done with the Artemis's MAC address and a few common Universally Unique Identifiers  (UUIDs.) </p>
-<p>When a connection is made, the Python program is used to send any of a set of fixed commands to the Artemis. Many of these commands request some data back from the board. When the command is received by the Artemis, it responds accordingly based a switch case statement that corresponds to the fixed commands.</p>
-
 
 <h2 class="section-heading">Configurations</h2>
 
