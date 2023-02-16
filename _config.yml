@@ -2,8 +2,8 @@ title:              Fast Robots
 email:              cwf54@cornell.edu
 description:        Lab Write-Ups for ECE 4160 
 author:             Wanda Field
-baseurl:            "/startbootstrap-clean-blog-jekyll"
-url:                "https://startbootstrap.github.io"
+baseurl:            "/"
+url:                "cwf54.github.io"
 
 # Social Profiles
 twitter_username:   
