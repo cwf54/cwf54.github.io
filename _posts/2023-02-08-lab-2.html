@@ -19,6 +19,8 @@ background: '/img/posts/05.jpg'
 
 <h2 class="section-heading">Configurations</h2>
 <!-- artemis mac address screenshot -->
+<img class="img-fluid" src="img\lab2pics\MACaddress.jpg" alt="..." /> 
+
 <p>The first step was finding the Artemis's MAC address. Upon running the given Arduino program, the device's MAC address is printed in the Serial Monitor. This MAC address is then stored in connections.yaml on the Python side so that my laptop will know which device to search for.</p>
 <p>I then generated a new UUID and stored it in both the Python and Arduino Programs</p>
 <!-- UUID generation, lines of code -->
@@ -27,6 +29,13 @@ background: '/img/posts/05.jpg'
 <h2 class="section-heading">Going through demp.ipynb</h2>
 <p>With the Configuration set up, I went through the provided Python demo program to verify that the connection was working before trying to change or write any new code.</p>
 <!-- get through demo -->
+
+<div style="position:relative;width:fit-content;height:fit-content;">
+    <a style="position:absolute;top:20px;right:1rem;opacity:0.8;" href="https://clipchamp.com/watch/hAOn2LtmSaQ?utm_source=embed&utm_medium=embed&utm_campaign=watch">
+        <img style="height:22px;" src="https://clipchamp.com/e.svg" alt="Made with Clipchamp" />
+    </a>
+    <iframe allow="autoplay;" allowfullscreen style="border:none" src="https://clipchamp.com/watch/hAOn2LtmSaQ/embed" width="640" height="360"></iframe>
+</div>
 <p></p>
 <p></p>
 <p></p>
@@ -34,6 +43,15 @@ background: '/img/posts/05.jpg'
 <p></p>
 
 <h2 class="section-heading">ECHO command</h2>
+<p>After successfully getting through the demo, it was time to implement my own commands starting with an echo command. The Python program sends this command along with a string, and the Arduino should Echo the string back. Here is my code for how the Arduino handles an ECHO command:</p>
+<script src="https://gist.github.com/cwf54/a533eddb375c1170d08fb403db529db5.js"></script>
+<p>To verify, here is what the response looks like in the the Serial Monitor and Jupyter Lab.</p>
+<img class="img-fluid" src="img\lab2pics\ECHOcommand.jpg" alt="..." /> 
+
+
+<p></p>
+<p></p>
+<p></p>
 <h2 class="section-heading">Get Time Command</h2>
 <h2 class="section-heading">Notification Handler</h2>
 <h2 class="section-heading">Get Temperature Command</h2>
