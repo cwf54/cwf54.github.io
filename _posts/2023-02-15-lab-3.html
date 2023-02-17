@@ -32,7 +32,7 @@ background: '/img/posts/no.jpg'
 <p>There are two modes to choose from: Short (max range is 1.3m) or Long (max range is 4m). For the purposes of this class, I chose the short distance mode. 4 meters is a long distance, especially to our relatively small robots (the sides are less than a foot long). Also, for the sake of not running into things, I want the robots to be able to accurately detect obstacles that are closer than 2 feet away.</p>
 <p>The Long Distance mode is the default mode, so in the setup of the Arduino program, I called the function .setDistanceModeShort().</p>
 <p>To test the sensor's accuracy, I collected several of it's readings at known distances. </p>
-<img class="img-fluid" src="/img/lab3pics/distancetest.jpg" alt="..." /> 
+<!-- <img class="img-fluid" src="/img/lab3pics/distancetest.jpg" alt="..." />  -->
 
 <img class="img-fluid" src="/img/lab3pics/distancegraph.png" alt="..." /> 
 <p>The sensor was very accurate up to about 2 feet away. Then it began underestimating increasingly. At 3.5 feet away, it read 3.14 feet away. This is manageable, and when using the sensors on the robot in the future, I will be cautious and take these underestimations into account. </p>
