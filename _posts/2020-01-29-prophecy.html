@@ -1,40 +1,33 @@
-<!-- ---
+---
 layout: post
-title: "Science has not yet mastered prophecy"
-subtitle: "We predict too much for the next year and yet far too little for the next ten."
-date: 2020-01-29 23:45:13 -0400
+title: "Lab 3"
+subtitle: "Time of Flight Sensors"
+date: 2023-02-15 23:45:13 -0400
 background: '/img/posts/04.jpg'
 ---
 
-<p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.</p>
+<h2 class="section-heading"></h2>
+<p>Pre-Lab</p>
+<p>Time of Flight sensors are used to detect how far something is, such as a wall. The final robot will use two of these sensors. </p>
+<img class="img-fluid" src="/img/lab3pics/sensor.jpg" alt="..." /> 
 
-<p>Science cuts two ways, of course; its products can be used for both good and evil. But there's no turning back from science. The early warnings about technological dangers also come from science.</p>
 
-<p>What was most significant about the lunar voyage was not that man set foot on the Moon but that they set eye on the earth.</p>
+<p>With two sensors, it is worthwhile to consider where on the robot's body the sensors will be placed. Ideally, there would be more than two sensors so that obstacles could be detected from all sorts of directions, but we will make do with the two we have.</p>
+<p>It is natural to put one sensor at the front of the robot so that it does not hit walls head on. After that, I will put the other sensor on the right side of the robot. </p>
+<img class="img-fluid" src="/img/lab3pics/TOFbody.jpg" alt="..." /> 
+<p>This side sensor will help detect when to take a turn. If it is at a corner where both the right and front sensors are detecting a close wall, it should take a left turn. If it was just in a region where the right wall was close and now it is far, maybe it should take a right turn. There would be better mobility with a TOF sensor on the left side, but when the sensors are actually on the robot I can play around more with their placements.</p>
 
-<p>A Chinese tale tells of some men sent to harm a young girl who, upon seeing her beauty, become her protectors rather than her violators. That's how I felt seeing the Earth for the first time. I could not help but love and cherish her.</p>
+<p>The sensors communicate with the Artemis via I2C. To wire this system, I used a QWIIC breakout board from Sparkfun, and soldered the ends of the QWIIC cables to the TOF sensors. I also connected the SHUTOFF pin of one of the TOF sensors to a GPIO pin on the Artemis so that data can be read from both, which will be discussed more later in this write-up. </p>
+<img class="img-fluid" src="/img/lab3pics/TOFcircuit.jpg" alt="..." /> 
 
-<p>For those who have seen the Earth from space, and for the hundreds and perhaps thousands more who will, the experience most certainly changes your perspective. The things that we share in our world are far more valuable than those which divide us.</p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
 
-<h2 class="section-heading">The Final Frontier</h2>
 
-<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
+<h2 class="section-heading"></h2>
 
-<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
+<!-- <span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span> -->
 
-<blockquote class="blockquote">The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.</blockquote>
-
-<p>Spaceflights cannot be stopped. This is not the work of any one man or even a group of men. It is a historical process which mankind is carrying out in accordance with the natural laws of human development.</p>
-
-<h2 class="section-heading">Reaching for the Stars</h2>
-
-<p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.</p>
-
-<img class="img-fluid" src="https://source.unsplash.com/Mn9Fa_wQH-M/800x450" alt="Demo Image">
-<span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
-
-<p>Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, to seek out new life and new civilizations, to boldly go where no man has gone before.</p>
-
-<p>As I stand out here in the wonders of the unknown at Hadley, I sort of realize there’s a fundamental truth to our nature, Man must explore, and this is exploration at its greatest.</p>
-
-<p>Placeholder text by <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by <a href="https://unsplash.com/">Unsplash</a>.</p> -->
+<p>Placeholder text by <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by <a href="https://unsplash.com/">Unsplash</a>.</p>
