@@ -13,7 +13,7 @@ background: '/img/posts/no.jpg'
 
 <p>With two sensors, it is worthwhile to consider where on the robot's body the sensors will be placed. It is natural to put one sensor at the front of the robot so that it does not hit walls head on. After that, I will put the other sensor on the right side of the robot. </p>
 <img class="img-fluid" src="/img/lab3pics/TOFbody.jpg" alt="..." /> 
-<p>This side sensor will help detect when to take a turn. If it is at a corner where both the right and front sensors are detecting a close wall, it should take a left turn. If it was just in a region where the right wall was close and now it is far, maybe it should take a right turn. There would be better mobility with a TOF sensor on the left side, but when the sensors are actually on the robot I can play around more with their placements.</p>
+<p>This side sensor will help detect when to take a turn. If it is at a corner where both the right and front sensors are detecting a close wall, it should take a left turn. If it was just in a region where the right wall was close and now it is far, maybe it should take a right turn. There would be better mobility with a third TOF sensor on the left side, but when the sensors are actually on the robot I can play around more with their placements.</p>
 
 <p>The sensors communicate with the Artemis via I2C. To wire this system, I used a QWIIC breakout board from Sparkfun, and soldered the ends of the QWIIC cables to the TOF sensors. I also connected the XSHUT pin of one of the TOF sensors to a GPIO pin on the Artemis so that data can be read from both, which will be discussed more later in this write-up. </p>
 <img class="img-fluid" src="/img/lab3pics/TOFcircuit.jpg" alt="..." /> 
