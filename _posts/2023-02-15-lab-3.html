@@ -6,7 +6,7 @@ date: 2023-02-15 23:45:13 -0400
 background: '/img/posts/04.jpg'
 ---
 
-<h2 class="Pre-Lab"></h2>
+<h2 class="section-heading">Pre-Lab</h2>
 <p>Time of Flight sensors are used to detect how far something is, such as a wall. The final robot will use two of these sensors. </p>
 <img class="img-fluid" src="/img/lab3pics/sensor.jpg" alt="..." /> 
 
@@ -22,13 +22,13 @@ background: '/img/posts/04.jpg'
 <!-- hardware pic -->
 <img class="img-fluid" src="/img/lab3pics/TOFhardware.jpg" alt="..." /> 
 
-
-<h2 class="Using One Sensor: Sensor Address"></h2>
+<h2 class="section-heading">Using One Sensor: Sensor Address</h2>
 <p>Before jumping straight to getting data from both TOF sensors simultaneously, I started out by checking the address of the device with the Wire_I2C example program in the Apollo3 library. </p>
 <img class="img-fluid" src="/img/lab3pics/TOFaddress.jpg" alt="..." /> 
 <p>The address is 0x29. This address is how the Artemis will identify which device it is exchanging data with on the I2C SDA line.</p>
 
-<h2 class="Reading data from the Sensor"></h2>
+<h2 class="section-heading">Reading data from the Sensor</h2>
+
 <p>Now to read distance data from the sensor, I ran the Read Distance example program from the SparkFun VL53L1X 4m Laser Distance Sensor Library. This program prints the distance data.</p>
 <p>There are two modes to choose from: Short (max range is 1.3m) or Long (max range is 4m). For the purposes of this class, I chose the short distance mode. 4 meters is a long distance, especially to our relatively small robots (the sides are less than a foot long). Also, for the sake of not running into things, I want the robots to be able to accurately detect obstacles that are closer than 2 feet away.</p>
 <p>The Long Distance mode is the default mode, so in the setup of the Arduino program, I called the function .setDistanceModeShort().</p>
@@ -38,20 +38,21 @@ background: '/img/posts/04.jpg'
 <img class="img-fluid" src="/img/lab3pics/distancegraph.jpg" alt="..." /> 
 <p>The sensor was very accurate up to about 2 feet away. Then it began underestimating increasingly. At 3.5 feet away, it read 3.14 feet away. This is manageable, and when using the sensors on the robot in the future, I will be cautious and take these underestimations into account. </p>
 
-<h2 class="Two Sensors in Parallel"></h2>
+<h2 class="section-heading">Two Sensors in Parallel</h2>
+
 <p>The two TOF sensors have the same address. For the Artemis to be able to communicate with both chips in parallel, either the sensors need to alternate turning on and off during each read, or one of them needs a different address.</p>
 <p>Basing my approach on Anya Probawo's Write Up from last year, I decided to change the address of one of the sensors. I soldered a wire from the XSHUT pin of one of the sensors to GPIO pin 8 on the Artemis. This wire allows me to shut down one of the sensors. During this shutdown in the setup of the Arduino program, I set the address of one of the sensors to 0x32.</p>
 <img class="img-fluid" src="/img/lab3pics/TOFshutdiwn.jpg" alt="..." /> 
 <p>Now the Artemis can communicate with both sensors without any mixup. Here are the readings from the sensors. </p>
 <img class="img-fluid" src="/img/lab3pics/sensordata.jpg" alt="..." /> 
 
-<h2 class="Timing of Data Reading"></h2>
+<h2 class="section-heading">Timing of Data Reading</h2>
 <p>Now we are interested in how long these sensor readings take. I read the time using millis() before the data was taken and again right after it was taken.</p>
 <img class="img-fluid" src="/img/lab3pics/timing code.jpg" alt="..." /> 
 <img class="img-fluid" src="/img/lab3pics/timing.jpg" alt="..." /> 
 <p>It can be seen that each reading takes 57 milliseconds. The bulk of this delay is from the sensor itself collecting data. If less data was collected, the delay would be shorter, but the results would be less accurate.</p>
 
-<h2 class="Time Vs. Distance"></h2>
+<h2 class="section-heading">Time Vs. Distance</h2>
 <p></p>
 <p></p>
 <p></p>
