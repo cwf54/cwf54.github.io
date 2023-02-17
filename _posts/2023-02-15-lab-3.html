@@ -28,7 +28,7 @@ background: '/img/posts/no.jpg'
 
 <h2 class="section-heading">Reading data from the Sensor</h2>
 
-<p>Now to read distance data from the sensor, I ran the Read Distance example program from the SparkFun VL53L1X 4m Laser Distance Sensor Library. This program prints the distance data.</p>
+<p>Now to read distance data from the sensor, I ran the Read Distance example program from the SparkFun VL53L1X 4m Laser Distance Sensor Library.</p>
 <p>There are two modes to choose from: Short (max range is 1.3m) or Long (max range is 4m). For the purposes of this class, I chose the short distance mode. 4 meters is a long distance, especially to our relatively small robots (the sides are less than a foot long). Also, for the sake of not running into things, I want the robots to be able to accurately detect obstacles that are closer than 2 feet away.</p>
 <p>The Long Distance mode is the default mode, so in the setup of the Arduino program, I called the function .setDistanceModeShort().</p>
 <p>To test the sensor's accuracy, I collected several of it's readings at known distances. </p>
