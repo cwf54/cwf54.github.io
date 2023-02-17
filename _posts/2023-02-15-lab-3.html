@@ -53,10 +53,15 @@ background: '/img/posts/04.jpg'
 <p>It can be seen that each reading takes 57 milliseconds. The bulk of this delay is from the sensor itself collecting data. If less data was collected, the delay would be shorter, but the results would be less accurate.</p>
 
 <h2 class="section-heading">Time Vs. Distance</h2>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
+<p>With the sensors working, we can send their data to my laptop via Bluetooth using the command protocol from lab 2. I started out by creating a GET_TOF command.</p>
+<script src="https://gist.github.com/cwf54/60cf288c02317b8474ceb1059a18717f.js"></script>
+<p>The current time and two distance data points are send to my laptop in the form of "T:(time)|D1:(distance1)|D2:(distance2) </p>
+<p>Then I modified the notification handler to read the individual data points and append them to their respective arrays.</p>
+<img class="img-fluid" src="/img/lab3pics/handler.jpg" alt="..." /> 
+<p>With the arrays set up, I plotted them using MatPlotLib</p>
+<img class="img-fluid" src="/img/lab3pics/plot.jpg" alt="..." /> 
+<img class="img-fluid" src="/img/lab3pics/finalgraph.jpg" alt="..." /> 
+
 <p></p>
 <p></p>
 <p></p>
