@@ -1,40 +1,76 @@
-<!-- ---
+---
 layout: post
-title: "Failure is not an option"
-subtitle: "Many say exploration is part of our destiny, but it’s actually our duty to future generations."
-date: 2020-01-28 23:45:13 -0400
+title: "Lab 4"
+subtitle: "The IMU"
+date: 2023-02-23 23:45:13 -0400
 background: '/img/posts/03.jpg'
 ---
+<h2 class="Introduction"> </h2>
 
-<p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.</p>
+<p>In this lab, we are exploring the uses of an Inertial Measurement Unit (IMU). The sensor we are using is a board from Sparkfun that conveniently connected to the QWIIC breakout board the TOF sensors were connected to in Lab 3.</p>
+<img class="img-fluid" src="img\lab4\IMU.jpg" alt="Sparkfun IMU board">
+<span class="caption text-muted">The Sparkfun IMU board</span>
 
-<p>Science cuts two ways, of course; its products can be used for both good and evil. But there's no turning back from science. The early warnings about technological dangers also come from science.</p>
+<p>This IMU contains a "3-axis gyroscope, 3-axis accelerometer, 3-axis compass, and a Digital Motion Processor™" as per the data sheet. For this lab, we will be focusing on the data collected by the accelerometer and the gyroscope. </p>
+<!-- footnote above for data sheet?-->
 
-<p>What was most significant about the lunar voyage was not that man set foot on the Moon but that they set eye on the earth.</p>
+<h2 class="section-heading">IMU Set Up</h2>
+<p>To start, I connected the IMU to the Artemis via a QWIIC connector and the QWIIC connected board.</p>
+<!-- connection picture-->
+<p>Since this is a new component, I ran the first Example program in the SparkFun 9DOF IMU Breakout - ICM 20948 - Arduino Library. This program prints out data from the ...? Here is a video of the values changing as I move the IMU. </p>
+<!--example code working video-->
+<!--discussion of AD0 value-->
+<!--discussion of how acc and gyro data determines RPY-->
 
-<p>A Chinese tale tells of some men sent to harm a young girl who, upon seeing her beauty, become her protectors rather than her violators. That's how I felt seeing the Earth for the first time. I could not help but love and cherish her.</p>
+<h2 class="section-heading">The Accelerometer</h2>
+<p>Starting with the Accelerometer, we can start calculating pitch and roll. Using the equations given in the example code from lecture, I calculated these values like this:</p>
+<img class="img-fluid" src="img\lab4\PR_accel_equations.jpg">
+<p>I printed these values to the Serial Monitor and tested their accuracy with known angular positions of the board. I used the flat table and the upright side of a sturdy box to represent the 0, 90, and -90 degree angle. Here is a video of this test:</p>
+<!--angle video-->
+<p>While the data is accurate for the most part, it is quite noisy. To quantify this noise, I did a Fast Fourier Transform (FFT) analysis on 1024 pitch data points. I based my program on a Python FFT tutorial.</p>
+<!--link tutorial-->
+<p>Here is the program:</p>
 
-<p>For those who have seen the Earth from space, and for the hundreds and perhaps thousands more who will, the experience most certainly changes your perspective. The things that we share in our world are far more valuable than those which divide us.</p>
+<!-- add FFT code -->
+<p>And here is the FFT graph. While the peak at 0 Hz is clear, there is still a lot of data in the remaining bins.</p>
+<img class="img-fluid" src="img\lab4\acc_before_LPF.jpg">
+<p>To combat this noise, I implemented a Low Pass Filter with the code given in lecture. I used 20 Hz as my cut-off frequency.</p>
+<img class="img-fluid" src="img\lab4\LPF_code.jpg">
+<p>Here is what the FFT analysis on the pitch looks like with this filter. As you can see, the noise is minimized.</p>
+<img class="img-fluid" src="img\lab4\acc_after_LPF.jpg">
 
-<h2 class="section-heading">The Final Frontier</h2>
 
-<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
+<h2 class="section-heading">The Gyroscope</h2>
+<p>While the Low Pass Filter reduced the noise, there could still be less noise. Further more, using a filter like this can be timely and greatly slow down the sampling times of this importat data. We can introduce data from the gyroscope and using fusion sensing to get more accurate, less noisy, and smoother data for the pitch and the roll.</p>
+<p>First, I again used the example code from class to output pitch, roll, and yaw from the gyroscope alone.</p>
+<img class="img-fluid" src="img\lab4\gyro_code.jpg">
+<p>Here is both the gyroscope and PR_accelerometer data. </p>
+<!-- why are they different? -->
+<!-- <img class="img-fluid" src="img\lab4\gyro_code.jpg"> -->
+<!-- Serial Monitor of gyro and accel -->
+<p>Once again I tested the values of these measurements with known positions of the IMU. Once again it was noisy. </p>
+<p>For sensor fusion, I used the complimentary filter code provided in lecture:</p>
+<img class="img-fluid" src="img\lab4\comp_filter_code.jpg">
+<p>Here is the FFT analysis on the pitch. It shows less noise than the low pass filter. </p>
+<img class="img-fluid" src="img\lab4\pitch_after_comp.jpg">
+<p>To further exhibit the benefits of the sensor fusion, here are videos of the filtered pitch and roll outputs alongiside the indivual sensor outputs with known positions of the IMU.</p>
+<!-- roll and pitch videos -->
 
-<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
+<p></p>
 
-<blockquote class="blockquote">The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.</blockquote>
 
-<p>Spaceflights cannot be stopped. This is not the work of any one man or even a group of men. It is a historical process which mankind is carrying out in accordance with the natural laws of human development.</p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
 
-<h2 class="section-heading">Reaching for the Stars</h2>
 
-<p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.</p>
+<h2 class="section-heading"> </h2>
 
-<img class="img-fluid" src="https://source.unsplash.com/Mn9Fa_wQH-M/800x450" alt="Demo Image">
-<span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
 
-<p>Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, to seek out new life and new civilizations, to boldly go where no man has gone before.</p>
+<img class="img-fluid" src="" alt="Demo Image">
+<span class="caption text-muted"></span>
 
-<p>As I stand out here in the wonders of the unknown at Hadley, I sort of realize there’s a fundamental truth to our nature, Man must explore, and this is exploration at its greatest.</p>
 
-<p>Placeholder text by <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by <a href="https://unsplash.com/">Unsplash</a>.</p> -->
+<p>Placeholder text by <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by <a href="https://unsplash.com/">Unsplash</a>.</p>
