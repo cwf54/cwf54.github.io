@@ -109,15 +109,16 @@
 
                     <h3>IMU Set Up</h3>
                         <p class="text-black-50 mb-0">To start, I connected the IMU to the Artemis via a QWIIC connector and the QWIIC connected board.</p>
-                        <!-- connection picture-->
-                        <p class="text-black-50 mb-0">Since this is a new component, I ran the first Example program in the SparkFun 9DOF IMU Breakout - ICM 20948 - Arduino Library. This program prints out data from the ...? Here is a video of the values changing as I move the IMU.</p>
-                        <!--example code working video-->
-                        <!--discussion of AD0 value-->
-                        <!--discussion of how acc and gyro data determines RPY-->
+                        <img class="img-fluid" src="assets\lab4\connection.jpg" alt="Sparkfun IMU board">
+                        <p class="text-black-50 mb-0">Since this is a new component, I ran the first Example program in the SparkFun 9DOF IMU Breakout - ICM 20948 - Arduino Library. This program prints out raw data from the gyroscope, accelerometer, and magnetometer. Here is a screenshot of the Serial Monitor while running this example.</p>
+                        <img class="img-fluid" src="assets\lab4\example.jpg" alt="Sparkfun IMU board">
+                        <p class="text-black-50 mb-0">In this example program, there is a definition of an AD0 value. This is the value of the last bit of the board's I2C address. By default, this value is 1. When the ADR jumper on the IMU board is closed, then the value becomes 0.</p>
+                        <p class="text-black-50 mb-0">Accelerometers detect linear acceleration, and gyroscopes detect angular velocity. Together the data from these sensors can determine the pitch, roll, and yaw of an object.</p>
                         <p class="text-black-50 mb-0"> </p>
+                        <img class="img-fluid" src="assets\lab4\pyrdiagram.jpg" alt="Sparkfun IMU board">
+
                         <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
-                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <div class="flex-shrink-0"><span class="text-primary">image from lecture</span></div>
                     
                     <h3>The Accelerometer</h3>
                         <p class="text-black-50 mb-0">Starting with the Accelerometer, we can start calculating pitch and roll. Using the equations given in the example code from lecture, I calculated these values like this:</p>
@@ -146,7 +147,7 @@
                         <p class="text-black-50 mb-0">Here is the FFT analysis on the pitch. It shows less noise than the low pass filter.</p>
                         <img class="img-fluid" src="assets\lab4\pitch_after_comp.jpg" alt="">
                         <p class="text-black-50 mb-0">To further exhibit the benefits of the sensor fusion, here are videos of the filtered pitch and roll outputs alongiside the indivual sensor outputs with known positions of the IMU.</p>
-                        <!-- roll and pitch videos -->
+                        <iframe width="640" height="360" src="https://www.youtube.com/embed/glp0oMzrYWI" title="Roll and pitch" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         <p class="text-black-50 mb-0"></p>
                         <p class="text-black-50 mb-0"></p>
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
