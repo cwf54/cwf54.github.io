@@ -118,13 +118,13 @@
                         <img class="img-fluid" src="assets\lab4\pyrdiagram.jpg" alt="Sparkfun IMU board">
 
                         <p class="text-black-50 mb-0"> </p>
-                    <div class="flex-shrink-0"><span class="text-primary">image from lecture</span></div>
+                    <div class="flex-shrink-0"><span class="text-primary">diagram from lecture</span></div>
                     
                     <h3>The Accelerometer</h3>
                         <p class="text-black-50 mb-0">Starting with the Accelerometer, we can start calculating pitch and roll. Using the equations given in the example code from lecture, I calculated these values like this:</p>
                         <img class="img-fluid" src="assets\lab4\PR_accel_equations.jpg" alt="">
-                        <p class="text-black-50 mb-0">I printed these values to the Serial Monitor and tested their accuracy with known angular positions of the board. I used the flat table and the upright side of a sturdy box to represent the 0, 90, and -90 degree angle. Here is a video of this test:</p>
-                        <!--angle video-->
+                        <p class="text-black-50 mb-0">I printed these values to the Serial Monitor and tested their accuracy with known angular positions of the board. I used the flat table and the upright side of a sturdy box to represent the 0, 90, and -90 degree angle. Here is the Serial monitor during this test:</p>
+                        <img class="img-fluid" src="assets\lab4\accel_data.jpg" alt="">
                         <p class="text-black-50 mb-0">While the data is accurate for the most part, it is quite noisy. To quantify this noise, I did a Fast Fourier Transform (FFT) analysis on 1024 pitch data points. I based my program on a <a href="https://alphabold.com/fourier-transform-in-python-vibration-analysis/">Python FFT tutorial.</a></p>
                         <p class="text-black-50 mb-0">Here is the FFT graph. While the peak at 0 Hz is clear, there is still a lot of data in the remaining bins.</p>
                         <img class="img-fluid" src="assets\lab4\acc_before_LPF.jpg" alt="">
@@ -137,10 +137,6 @@
                         <p class="text-black-50 mb-0">While the Low Pass Filter reduced the noise, there could still be less noise. Further more, using a filter like this can be timely and greatly slow down the sampling times of this importat data. We can introduce data from the gyroscope and using fusion sensing to get more accurate, less noisy, and smoother data for the pitch and the roll.While the Low Pass Filter reduced the noise, there could still be less noise. Further more, using a filter like this can be timely and greatly slow down the sampling times of this importat data. We can introduce data from the gyroscope and using fusion sensing to get more accurate, less noisy, and smoother data for the pitch and the roll.</p>
                         <p class="text-black-50 mb-0">First, I again used the example code from class to output pitch, roll, and yaw from the gyroscope alone.</p>
                         <img class="img-fluid" src="assets\lab4\gyro_code.jpg" alt="">
-                        <p class="text-black-50 mb-0">Here is both the gyroscope and PR_accelerometer data.</p>
-                        <!-- why are they different? -->
-                        <!-- <img class="img-fluid" src="img\lab4\gyro_code.jpg"> -->
-                        <!-- Serial Monitor of gyro and accel -->
                         <p class="text-black-50 mb-0">Once again I tested the values of these measurements with known positions of the IMU. Once again it was noisy.</p>
                         <p class="text-black-50 mb-0">For sensor fusion, I used the complimentary filter code provided in lecture:</p>
                         <img class="img-fluid" src="assets\lab4\comp_filter_code.jpg" alt="">
