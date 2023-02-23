@@ -124,11 +124,8 @@
                         <img class="img-fluid" src="assets\lab4\PR_accel_equations.jpg" alt="">
                         <p class="text-black-50 mb-0">I printed these values to the Serial Monitor and tested their accuracy with known angular positions of the board. I used the flat table and the upright side of a sturdy box to represent the 0, 90, and -90 degree angle. Here is a video of this test:</p>
                         <!--angle video-->
-                        <p class="text-black-50 mb-0">While the data is accurate for the most part, it is quite noisy. To quantify this noise, I did a Fast Fourier Transform (FFT) analysis on 1024 pitch data points. I based my program on a Python FFT tutorial.</p>
-                        <!--link tutorial-->
-                        <p class="text-black-50 mb-0">Here is the program:</p>
-                        <!-- add FFT code -->
-                        <p class="text-black-50 mb-0">And here is the FFT graph. While the peak at 0 Hz is clear, there is still a lot of data in the remaining bins.</p>
+                        <p class="text-black-50 mb-0">While the data is accurate for the most part, it is quite noisy. To quantify this noise, I did a Fast Fourier Transform (FFT) analysis on 1024 pitch data points. I based my program on a <a href="https://alphabold.com/fourier-transform-in-python-vibration-analysis/">Python FFT tutorial.</a></p>
+                        <p class="text-black-50 mb-0">Here is the FFT graph. While the peak at 0 Hz is clear, there is still a lot of data in the remaining bins.</p>
                         <img class="img-fluid" src="assets\lab4\acc_before_LPF.jpg" alt="">
                         <p class="text-black-50 mb-0">To combat this noise, I implemented a Low Pass Filter with the code given in lecture. I used 20 Hz as my cut-off frequency.</p>
                         <img class="img-fluid" src="assets\lab4\LPF_code.jpg" alt="">
@@ -167,16 +164,15 @@
                     <h3>Connecting the Battery</h3>
                         <p class="text-black-50 mb-0">Now we can start powering the Artemtis with a battery. The car came with 2 650mAh batteries, and our kit came with 1 850mAh battery. Even though the weaker batter came with the car, it makes more sense to use the bigger batter to power the motors. These motors require more power than the board, and later in the semester, the extra time that the bigger battery can offer will be valuable.</p>
                         <p class="text-black-50 mb-0">To connect the 650mAh battery to the Artemis, I needed to cut the plug-in connected off of the battery and solder the wires to a connector that fits into the board. I cut and soldered carefully, working on one wire at a time and using Heat Shrink. Here is the finished battery connected to the Artemis.</p>
-                        <img class="img-fluid" src="assets\lab4\bluetooth.jpg" alt="">
-                        <!--  battery pic  -->
+                        <img class="img-fluid" src="assets\lab4\battery.jpg" alt="">
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
                     <h3>Stunt!</h3>
                         <p class="text-black-50 mb-0">It's time to play with the car! First, I powered on the car and its remote and played around with the controls to see what the body was capable of. </p>
-                        <!-- first video -->
+                        <iframe width="640" height="360" src="https://www.youtube.com/embed/M4opyoFu12w" title="Car without sensors" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         <p class="text-black-50 mb-0">It was a lot of fun to play with the car. It moved a lot faster than I thought it would, and it is pretty powerful. I enjoyed making it do flips by switching directions quickly. Also, it is very good at spinning in place.</p>
                         <p class="text-black-50 mb-0">With some experience with the car, I secured the Artemis and the sensors onto the car (temporarily for now) with zip ties and tape, and I ran the TOF and IMU data collection command while driving forward then spinning.</p>
-                        <!-- car with zip ties -->
-                        <!-- final video -->
+                        <img class="img-fluid" src="assets\lab4\sensorcar.jpg" alt="">
+                        <iframe width="640" height="360" src="https://www.youtube.com/embed/BNzGAZCdHGs" title="Spin with sensors" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         <p class="text-black-50 mb-0">Here are the distance and IMU data graphs over time from this run.</p>
                         <img class="img-fluid" src="assets\lab4\trick_TOF.jpg" alt="">
                         <img class="img-fluid" src="assets\lab4\trick_IMU.jpg" alt="">
