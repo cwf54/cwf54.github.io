@@ -164,10 +164,102 @@
             <!-- Interests-->
             <section class="resume-section" id="interests">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Interests</h2>
-                    <p>Apart from being a web developer, I enjoy most of my time being outdoors. In the winter, I am an avid skier and novice ice climber. During the warmer months here in Colorado, I enjoy mountain biking, free climbing, and kayaking.</p>
-                    <p class="mb-0">When forced indoors, I follow a number of sci-fi and fantasy genre movies and television shows, I am an aspiring chef, and I spend a large amount of my free time exploring the latest technology advancements in the front-end web development world.</p>
-                </div>
+                    <h2 class="mb-5">Lab 2: Bluetooth Configuration with personal laptop</h2>
+                    <div class="flex-shrink-0"><span class="text-primary">February 8, 2023</span></div>
+
+                    <h3>Pre-Lab</h3>
+                        <p class="text-black-50 mb-0">The set up for this Bluetooth lab requires running a python script on a computer and an Arduino sketch on the Artemis. To run the Python scripts, we are using a virtual environment software called Jupyter Lab. When Bluetooth is configured, the Python program running on my computer can send any of a set of fixed commands to and receive a response from the Artemis. </p>
+                        <p class="text-black-50 mb-0">There was some struggle with getting this system set up, but thanks to the wonderful TAs and collaborative efforts on Ed Discussion, a solution to setting up Jupyter Lab on Windows 11 was found using Windows Subsystem for Linux (WSL). </p>
+                        <p class="text-black-50 mb-0">We were given a Codebase for this lab which provided both a Python and an Arduino demo, and could already send a few commands and messages between the devices. </p>
+                        <p class="text-black-50 mb-0">Before sending any commands or messages to each other, the devices must establish a connection. This is done with the Artemis's MAC address and a few common Universally Unique Identifiers  (UUIDs.) </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                        <h3>Configurations</h3>
+                        <p class="text-black-50 mb-0">The first step was finding the Artemis's MAC address. Upon running the given Arduino program, the device's MAC address is printed in the Serial Monitor. This MAC address is then stored in connections.yaml on the Python side so that my laptop will know which device to search for.</p>
+                        <!-- artemis mac address screenshot -->
+                        <img class="img-fluid" src="/assets/img/lab2pics/MACaddress.jpg" alt="..." /> 
+                        <p class="text-black-50 mb-0">I then generated a new UUID and stored it in both the Python and Arduino Programs</p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                        <h3>Going through demo.ipynb</h3>
+                        <p class="text-black-50 mb-0">With the Configuration set up, I went through the provided Python demo program to verify that the connection was working before trying to change or write any new code. Here is a video of a successful run through the demo.</p>
+                        <div style="position:relative;width:fit-content;height:fit-content;">
+                            <a style="position:absolute;top:20px;right:1rem;opacity:0.8;" href="https://clipchamp.com/watch/hAOn2LtmSaQ?utm_source=embed&utm_medium=embed&utm_campaign=watch">
+                                <img style="height:22px;" src="https://clipchamp.com/e.svg" alt="Made with Clipchamp" />
+                            </a>
+                            <iframe allow="autoplay;" allowfullscreen style="border:none" src="https://clipchamp.com/watch/hAOn2LtmSaQ/embed" width="640" height="360"></iframe>
+                        </div>
+                    
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                        <h3>ECHO command</h3>
+                    <p class="text-black-50 mb-0">After successfully getting through the demo, it was time to implement my own commands starting with an ECHO command. The Python program sends this command along with a string, and the Arduino should Echo the string back. Here is my code for how the Arduino handles an ECHO command:</p>
+                    <script src="https://gist.github.com/cwf54/a533eddb375c1170d08fb403db529db5.js"></script>
+                    <p class="text-black-50 mb-0">To verify, here is what the response looks like in the the Serial Monitor and Jupyter Lab.</p>
+                    <img class="img-fluid" src="/img/lab2pics/ECHOcommand.jpg" alt="..." /> 
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    </div>
+
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                        <h3>Get Time Comand</h3>
+                        <p class="text-black-50 mb-0">To implement a command that returns a time stamp, I use an Arduino function called millis() which returns the number of milliseconds that have passed since the Arduino last restarted.</p>
+                        <script src="https://gist.github.com/cwf54/e5e1a8d9ce5264b996b739cb4b1a7ac8.js"></script>
+                        <img class="img-fluid" src="/assets/img/lab2pics/TIMEcommand.jpg" alt="..."/>   
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    </div>
+
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                        <h3>Notification Handler</h3>
+                        <p class="text-black-50 mb-0">Now that implementing commands is more natural, it is helpful to set up a notification handler, such that the string received form the Arduino can be received automatically (Notice that in the previous two examples I had to store the string into a variable "s" manually.)</p>
+                        <p class="text-black-50 mb-0">For notifications I make use of two already existing functions: start_notify() and stop_notify(). Calling start_notify() requires a notification handler. This is a callback function which automatically stores the received string. To see what the notification handler has stored, I print that variable. Here is the notification handler working with the GET_TIME_MILLIS command that we got working earlier.</p>
+                        <div style="position:relative;width:fit-content;height:fit-content;">
+                            <a style="position:absolute;top:20px;right:1rem;opacity:0.8;" href="https://clipchamp.com/watch/J76ihkjY5sS?utm_source=embed&utm_medium=embed&utm_campaign=watch">
+                                <img style="height:22px;" src="https://clipchamp.com/e.svg" alt="Made with Clipchamp" />
+                            </a>
+                            <iframe allow="autoplay;" allowfullscreen style="border:none" src="https://clipchamp.com/watch/J76ihkjY5sS/embed" width="640" height="360"></iframe>
+                        </div>                        
+                        <p class="text-black-50 mb-0">To stop the notification handler, you just call stop_notify().</p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    </div>
+
+
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                        <h3>Get Temperature Comand</h3>
+                        <p class="text-black-50 mb-0">Now let's start sending data from the Artemis to my laptop. Using the temperature reading setup from the Analog_Read example sketch (See Lab 1), here is the code for a Get Temperature command:</p>
+                        <script src="https://gist.github.com/cwf54/565f215b864a347b2b8e16e826ddf576.js"></script>
+                        <p class="text-black-50 mb-0">This program samples the temperature sensor every second for 5 seconds, and then sends all 5 samples as well as their timestamps back to my laptop.</p>
+                        <img class="img-fluid" src="/assets/img/lab2pics/GETTEMPcommand.jpg" alt="..."/> 
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    </div>
+
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                        <h3>RAPID Get Temperature Command</h3>
+                        <p class="text-black-50 mb-0">What if samples came into to my laptop much quicker than once a second? Most likely, they will. This final command will request as many samples as the Artemis can send in 5 seconds. Here is the Arduino code for it:</p>
+                        <script src="https://gist.github.com/cwf54/48e9b7d1513d9901e9ba27b4bb3a7fb6.js"></script>
+                        <p class="text-black-50 mb-0">Instead of concatenating all of the samples within the Arduino progam like I did in the previous command protocol, the board sends each sample one at a time. This is because we have defined the maximum character count for a sent string to be 151. With variable lengths of time stamps, it is safer to send one sample at a time, especially when you have a notification handler that will be able to store all of the incoming values.</p>
+                        <p class="text-black-50 mb-0">I created a new RAPID notification handler, which appends all of the incoming strings into one long string. Here is the new notification handler in action:</p>
+                        <div style="position:relative;width:fit-content;height:fit-content;">
+                            <a style="position:absolute;top:20px;right:1rem;opacity:0.8;" href="https://clipchamp.com/watch/MrEcAk6g0PH?utm_source=embed&utm_medium=embed&utm_campaign=watch">
+                                <img style="height:22px;" src="https://clipchamp.com/e.svg" alt="Made with Clipchamp" />
+                            </a>
+                            <iframe allow="autoplay;" allowfullscreen style="border:none" src="https://clipchamp.com/watch/MrEcAk6g0PH/embed" width="640" height="360"></iframe>
+                        </div>
+                        <p class="text-black-50 mb-0">As you can see, you can check on the strings while the command is still sending over the data. Also, the final data samples are the same, verifying that the notification handler worked properly.</p>    
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    </div>
+
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                        <h3>Limitations</h3>
+                        <p class="text-black-50 mb-0">Before getting too excited about sending hoards of information back and forth between my laptop and the Artemis, it is important to consider what the Artemis can handle. The board has 384 kBytes of RAM, which is 3,072,000 bits. This is how many bits the board could send at one time before something bad happens (maybe the board crashes, the Bluetooth connection is lost, etc.) Let's consider what this amount of RAM could send.</p>
+                        <p class="text-black-50 mb-0">To be safe, let's use 20% of the RAM for Bluetooth communication. The board could be using its RAM for many other things. 20% is 614,400 bits.</p>
+                        <p class="text-black-50 mb-0">Looking ahead to Lab 3, the fastest I2C frequency of the Time of Flight sensors that we will be using is 400kHz. Let's consider a frequency of 100kHz. Asumming that data is sent in units of 2 bytes (16 bits), we could store data on the Artemis for 0.384 seconds befores sending it to my laptop.</p>
+                        <img class="img-fluid" src="/img/lab2pics/limitations.jpg" alt="..."/> 
+
+                        <p class="text-black-50 mb-0">With smaller frequencies, we could store data for longer periods of time (proportionally). Recall that when the frequency was 1 Hz for the original GET TEMP command, we stored data for 5 seconds with no problem. If we knew we could use more RAM we could store data for longer as well, but again, if we have a notification handler, we could make the laptop do the work of appending the samples.</p>    
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    </div>
+
+
+
+                    
+                    
             </section>
             <hr class="m-0" />
             <!-- Awards-->
@@ -237,3 +329,33 @@
         <script src="js/scripts.js"></script>
     </body>
 </html>
+
+
+
+
+
+
+<!--                     <h3>Example Program 1: Blinking Light</h3>
+                            <p class="text-black-50 mb-0">The simplest program to run on any board is blinking an LED. 
+                            Similar to outputting "Hello World," this program ensures that the system is set up properly.
+                            </p> 
+                            <iframe width="320" height="560" src="https://www.youtube.com/embed/8UAxMHmVeHc" title="Lab 1: Blinking light" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                      
+                        <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                            <h3>Example Program 2: Serial Monitor</h3>
+                            <p class="text-black-50 mb-0">This next example tests the serial communication feature of the board. 
+                            Upon running this program, a series of print statements appear in the Serial Monitor.</p>
+                        <iframe width="640" height="360" src="https://www.youtube.com/embed/Qtf6Bwmp5pg" title="Lab 1: serial monitor" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                            <h3>Example Program 3: Analog Read
+                            </h3>
+                            <p class="text-black-50 mb-0">Now testing the onboard testing sensor. Notice how in the beginning of the video, 
+                                the temperature values are in the 32,200 count range. After I press my thumb onto the board, heating it up, 
+                                the temperature increases to the 32,600 count range. After I release my thumb, the temperature drops back down to 32,200 counts.
+                            </p>
+                            <iframe width="640" height="360" src="https://www.youtube.com/embed/74wRfN93ct0" title="Lab 1: analog read" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                            <h3>Example Program 4: PDM</h3>
+                        <p class="text-black-50 mb-0">The final example tests the microphone capabilities of the board. The Serial Monitor prints out the 
+                            frequency the microphone detects, and when I whistle into the microphone, the frequency skyrockets to the 2000 Hz range.
+                        </p>
+                        <div class="flex-shrink-0"><span class="text-primary"></span></div> -->
