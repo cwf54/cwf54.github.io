@@ -101,7 +101,7 @@
                 <div class="resume-section-content">
                     <h2 class="mb-5">Lab 4: The IMU</h2>
                     <h3>Introduction</h3>
-                        <p class="text-black-50 mb-0">In this lab, we are exploring the uses of an Inertial Measurement Unit (IMU). The sensor we are using is a board from Sparkfun that conveniently connected to the QWIIC breakout board the TOF sensors were connected to in Lab 3.</p>
+                        <p class="text-black-50 mb-0">In this lab, we are exploring the uses of an Inertial Measurement Unit (IMU). The sensor we are using is a board from Sparkfun that conveniently connects to the QWIIC breakout board the TOF sensors were connected to in Lab 3.</p>
                         <img class="img-fluid" src="assets\lab4\IMU.jpg" alt="Sparkfun IMU board">
                         <div class="flex-shrink-0"><span class="text-primary">The Sparkfun IMU board</span></div>
                         <p class="text-black-50 mb-0">This IMU contains a "3-axis gyroscope, 3-axis accelerometer, 3-axis compass, and a Digital Motion Processor™" as per the data sheet. For this lab, we will be focusing on the data collected by the accelerometer and the gyroscope.</p>
@@ -123,8 +123,11 @@
                     <h3>The Accelerometer</h3>
                         <p class="text-black-50 mb-0">Starting with the Accelerometer, we can start calculating pitch and roll. Using the equations given in the example code from lecture, I calculated these values like this:</p>
                         <img class="img-fluid" src="assets\lab4\PR_accel_equations.jpg" alt="">
-                        <p class="text-black-50 mb-0">I printed these values to the Serial Monitor and tested their accuracy with known angular positions of the board. I used the flat table and the upright side of a sturdy box to represent the 0, 90, and -90 degree angle. Here is the Serial monitor during this test:</p>
-                        <img class="img-fluid" src="assets\lab4\accel_data.jpg" alt="">
+                        <p class="text-black-50 mb-0">I printed these values to the Serial Monitor and tested their accuracy with known angular positions of the board. I used the flat table and the upright side of a sturdy box to represent the 0, 90, and -90 degree angle. Here is are screenshots of the Serial monitor during some of this test:</p>
+                        <img class="img-fluid" src="assets\lab4\accel_at0.jpg" alt="">
+                        <img class="img-fluid" src="assets\lab4\accel_at90.jpg" alt="">
+                        <img class="img-fluid" src="assets\lab4\accel_atneg90.jpg" alt="">
+
                         <p class="text-black-50 mb-0">While the data is accurate for the most part, it is quite noisy. To quantify this noise, I did a Fast Fourier Transform (FFT) analysis on 1024 pitch data points. I based my program on a <a href="https://alphabold.com/fourier-transform-in-python-vibration-analysis/">Python FFT tutorial.</a></p>
                         <p class="text-black-50 mb-0">Here is the FFT graph. While the peak at 0 Hz is clear, there is still a lot of data in the remaining bins.</p>
                         <img class="img-fluid" src="assets\lab4\acc_before_LPF.jpg" alt="">
