@@ -172,12 +172,15 @@
                         <p class="text-black-50 mb-0">There was some struggle with getting this system set up, but thanks to the wonderful TAs and collaborative efforts on Ed Discussion, a solution to setting up Jupyter Lab on Windows 11 was found using Windows Subsystem for Linux (WSL). </p>
                         <p class="text-black-50 mb-0">We were given a Codebase for this lab which provided both a Python and an Arduino demo, and could already send a few commands and messages between the devices. </p>
                         <p class="text-black-50 mb-0">Before sending any commands or messages to each other, the devices must establish a connection. This is done with the Artemis's MAC address and a few common Universally Unique Identifiers  (UUIDs.) </p>
+                    
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
                         <h3>Configurations</h3>
                         <p class="text-black-50 mb-0">The first step was finding the Artemis's MAC address. Upon running the given Arduino program, the device's MAC address is printed in the Serial Monitor. This MAC address is then stored in connections.yaml on the Python side so that my laptop will know which device to search for.</p>
                         <!-- artemis mac address screenshot -->
-                        <img class="img-fluid" src="/assets/img/lab2pics/MACaddress.jpg" alt="..." /> 
+                        <img class="img-fluid" src="assets\lab2pics\MACaddress.jpg" alt="..." /> 
                         <p class="text-black-50 mb-0">I then generated a new UUID and stored it in both the Python and Arduino Programs</p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                        
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
                         <h3>Going through demo.ipynb</h3>
                         <p class="text-black-50 mb-0">With the Configuration set up, I went through the provided Python demo program to verify that the connection was working before trying to change or write any new code. Here is a video of a successful run through the demo.</p>
@@ -187,13 +190,15 @@
                             </a>
                             <iframe allow="autoplay;" allowfullscreen style="border:none" src="https://clipchamp.com/watch/hAOn2LtmSaQ/embed" width="640" height="360"></iframe>
                         </div>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    </div>
                     
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
                         <h3>ECHO command</h3>
                     <p class="text-black-50 mb-0">After successfully getting through the demo, it was time to implement my own commands starting with an ECHO command. The Python program sends this command along with a string, and the Arduino should Echo the string back. Here is my code for how the Arduino handles an ECHO command:</p>
                     <script src="https://gist.github.com/cwf54/a533eddb375c1170d08fb403db529db5.js"></script>
                     <p class="text-black-50 mb-0">To verify, here is what the response looks like in the the Serial Monitor and Jupyter Lab.</p>
-                    <img class="img-fluid" src="/img/lab2pics/ECHOcommand.jpg" alt="..." /> 
+                    <img class="img-fluid" src="assets\lab2pics\ECHOcommand.jpg" alt="..." /> 
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
                     </div>
 
@@ -250,7 +255,7 @@
                         <p class="text-black-50 mb-0">Before getting too excited about sending hoards of information back and forth between my laptop and the Artemis, it is important to consider what the Artemis can handle. The board has 384 kBytes of RAM, which is 3,072,000 bits. This is how many bits the board could send at one time before something bad happens (maybe the board crashes, the Bluetooth connection is lost, etc.) Let's consider what this amount of RAM could send.</p>
                         <p class="text-black-50 mb-0">To be safe, let's use 20% of the RAM for Bluetooth communication. The board could be using its RAM for many other things. 20% is 614,400 bits.</p>
                         <p class="text-black-50 mb-0">Looking ahead to Lab 3, the fastest I2C frequency of the Time of Flight sensors that we will be using is 400kHz. Let's consider a frequency of 100kHz. Asumming that data is sent in units of 2 bytes (16 bits), we could store data on the Artemis for 0.384 seconds befores sending it to my laptop.</p>
-                        <img class="img-fluid" src="/img/lab2pics/limitations.jpg" alt="..."/> 
+                        <img class="img-fluid" src="assets/img/lab2pics/limitations.jpg" alt="..."/> 
 
                         <p class="text-black-50 mb-0">With smaller frequencies, we could store data for longer periods of time (proportionally). Recall that when the frequency was 1 Hz for the original GET TEMP command, we stored data for 5 seconds with no problem. If we knew we could use more RAM we could store data for longer as well, but again, if we have a notification handler, we could make the laptop do the work of appending the samples.</p>    
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
