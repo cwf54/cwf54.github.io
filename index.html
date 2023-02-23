@@ -204,7 +204,7 @@
                         <h3>Get Time Comand</h3>
                         <p class="text-black-50 mb-0">To implement a command that returns a time stamp, I use an Arduino function called millis() which returns the number of milliseconds that have passed since the Arduino last restarted.</p>
                         <script src="https://gist.github.com/cwf54/e5e1a8d9ce5264b996b739cb4b1a7ac8.js"></script>
-                        <img class="img-fluid" src="/assets/img/lab2pics/TIMEcommand.jpg" alt="..."/>   
+                        <img class="img-fluid" src="assets\lab2pics\TIMEcommand.jpg" alt="..."/>   
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
 
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
@@ -226,7 +226,7 @@
                         <p class="text-black-50 mb-0">Now let's start sending data from the Artemis to my laptop. Using the temperature reading setup from the Analog_Read example sketch (See Lab 1), here is the code for a Get Temperature command:</p>
                         <script src="https://gist.github.com/cwf54/565f215b864a347b2b8e16e826ddf576.js"></script>
                         <p class="text-black-50 mb-0">This program samples the temperature sensor every second for 5 seconds, and then sends all 5 samples as well as their timestamps back to my laptop.</p>
-                        <img class="img-fluid" src="/assets/img/lab2pics/GETTEMPcommand.jpg" alt="..."/> 
+                        <img class="img-fluid" src="assets\lab2pics\GETTEMPcommand.jpg" alt="..."/> 
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
 
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
@@ -249,7 +249,7 @@
                         <p class="text-black-50 mb-0">Before getting too excited about sending hoards of information back and forth between my laptop and the Artemis, it is important to consider what the Artemis can handle. The board has 384 kBytes of RAM, which is 3,072,000 bits. This is how many bits the board could send at one time before something bad happens (maybe the board crashes, the Bluetooth connection is lost, etc.) Let's consider what this amount of RAM could send.</p>
                         <p class="text-black-50 mb-0">To be safe, let's use 20% of the RAM for Bluetooth communication. The board could be using its RAM for many other things. 20% is 614,400 bits.</p>
                         <p class="text-black-50 mb-0">Looking ahead to Lab 3, the fastest I2C frequency of the Time of Flight sensors that we will be using is 400kHz. Let's consider a frequency of 100kHz. Asumming that data is sent in units of 2 bytes (16 bits), we could store data on the Artemis for 0.384 seconds befores sending it to my laptop.</p>
-                        <img class="img-fluid" src="assets/img/lab2pics/limitations.jpg" alt="..."/> 
+                        <img class="img-fluid" src="assets\lab2pics\limitations.jpg" alt="..."/> 
 
                         <p class="text-black-50 mb-0">With smaller frequencies, we could store data for longer periods of time (proportionally). Recall that when the frequency was 1 Hz for the original GET TEMP command, we stored data for 5 seconds with no problem. If we knew we could use more RAM we could store data for longer as well, but again, if we have a notification handler, we could make the laptop do the work of appending the samples.</p>    
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
