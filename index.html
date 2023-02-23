@@ -123,7 +123,7 @@
                     <h3>The Accelerometer</h3>
                         <p class="text-black-50 mb-0">Starting with the Accelerometer, we can start calculating pitch and roll. Using the equations given in the example code from lecture, I calculated these values like this:</p>
                         <img class="img-fluid" src="assets\lab4\PR_accel_equations.jpg" alt="">
-                        <p class="text-black-50 mb-0">I printed these values to the Serial Monitor and tested their accuracy with known angular positions of the board. I used the flat table and the upright side of a sturdy box to represent the 0, 90, and -90 degree angle. Here is are screenshots of the Serial monitor during some of this test:</p>
+                        <p class="text-black-50 mb-0">I printed these values to the Serial Monitor and tested their accuracy with known angular positions of the board. I used the flat table and the upright side of a sturdy box to represent the 0, 90, and -90 degree angle. Here are screenshots of the Serial monitor during some of this test:</p>
                         <img class="img-fluid" src="assets\lab4\accel_at0.jpg" alt="">
                         <img class="img-fluid" src="assets\lab4\accel_at90.jpg" alt="">
                         <img class="img-fluid" src="assets\lab4\accel_atneg90.jpg" alt="">
@@ -137,10 +137,10 @@
                         <img class="img-fluid" src="assets\lab4\acc_after_LPF.jpg" alt="">
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
                     <h3>The Gyroscope</h3>
-                        <p class="text-black-50 mb-0">While the Low Pass Filter reduced the noise, there could still be less noise. Further more, using a filter like this can be timely and greatly slow down the sampling times of this importat data. We can introduce data from the gyroscope and using fusion sensing to get more accurate, less noisy, and smoother data for the pitch and the roll.</p>
+                        <p class="text-black-50 mb-0">While the Low Pass Filter reduced the noise, there could still be less noise. Further more, using a filter like this can be timely and greatly slow down the sampling times of this important data. We can introduce data from the gyroscope and using fusion sensing to get more accurate, less noisy, and smoother data for the pitch and the roll.</p>
                         <p class="text-black-50 mb-0">First, I again used the example code from class to output pitch, roll, and yaw from the gyroscope alone.</p>
                         <img class="img-fluid" src="assets\lab4\gyro_code.jpg" alt="">
-                        <p class="text-black-50 mb-0">Once again I tested the values of these measurements with known positions of the IMU. Once again it was noisy.</p>
+                        <p class="text-black-50 mb-0">Once again I tested the values of these measurements with known positions of the IMU. As expected, it was noisy.</p>
                         <p class="text-black-50 mb-0">For sensor fusion, I used the complimentary filter code provided in lecture:</p>
                         <img class="img-fluid" src="assets\lab4\comp_filter_code.jpg" alt="">
                         <p class="text-black-50 mb-0">Here is the FFT analysis on the pitch. It shows less noise than the low pass filter.</p>
