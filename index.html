@@ -123,41 +123,71 @@
             <!-- Skills-->
             <section class="resume-section" id="skills">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Skills</h2>
-                    <div class="subheading mb-3">Programming Languages & Tools</div>
-                    <ul class="list-inline dev-icons">
-                        <li class="list-inline-item"><i class="fab fa-html5"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-css3-alt"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-js-square"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-angular"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-react"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-node-js"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-sass"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-less"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-wordpress"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-gulp"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-grunt"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-npm"></i></li>
-                    </ul>
-                    <div class="subheading mb-3">Workflow</div>
-                    <ul class="fa-ul mb-0">
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            Mobile-First, Responsive Design
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            Cross Browser Testing & Debugging
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            Cross Functional Teams
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            Agile Development & Scrum
-                        </li>
-                    </ul>
+                    <h2 class="mb-5">Lab 3: Time of Flight Sensors</h2>
+                    <div class="flex-shrink-0"><span class="text-primary">February 16, 2023</span></div>
+
+                    <h3>Pre-Lab</h3>
+                        <p class="text-black-50 mb-0">Time of Flight sensors are used to detect how far something is, such as a wall. The final robot will use two of these sensors.</p> 
+                        <img class="img-fluid" src="assets\lab3pics\sensor.jpg" alt="..." />
+                        <div class="flex-shrink-0"><span class="text-primary">picture from Polulu</span></div>
+                        <p class="text-black-50 mb-0">With two sensors, it is worthwhile to consider where on the robot's body the sensors will be placed. It is natural to put one sensor at the front of the robot so that it does not hit walls head on. After that, I will put the other sensor on the right side of the robot.</p>
+                        <img class="img-fluid" src="assets\lab3pics\TOFbody.jpg" alt="..." /> 
+                        <p class="text-black-50 mb-0">This side sensor will help detect when to take a turn. If it is at a corner where both the right and front sensors are detecting a close wall, it should take a left turn. If it was just in a region where the right wall was close and now it is far, maybe it should take a right turn. There would be better mobility with a third TOF sensor on the left side, but when the sensors are actually on the robot I can play around more with their placements.</p>
+                        <p class="text-black-50 mb-0">The sensors communicate with the Artemis via I2C. To wire this system, I used a QWIIC breakout board from Sparkfun, and soldered the ends of the QWIIC cables to the TOF sensors. I also connected the XSHUT pin of one of the TOF sensors to a GPIO pin on the Artemis so that data can be read from both, which will be discussed more later in this write-up.</p>
+                        <img class="img-fluid" src="assets\lab3pics\TOFcircuit.jpg" alt="..." /> 
+                        <p class="text-black-50 mb-0">Here is what the actual circuit looks like:</p>
+                        <img class="img-fluid" src="assets\lab3pics\TOFhardware.jpg" alt="..." /> 
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+
+                    <h3>Using One Sensor: Sensor Address</h3>
+                        <p class="text-black-50 mb-0">Before jumping straight to getting data from both TOF sensors simultaneously, I started out by checking the address of the device with the Wire_I2C example program in the Apollo3 library.</p>
+                        <img class="img-fluid" src="assets\lab3pics\TOFaddress.jpg" alt="..." /> 
+                        <p class="text-black-50 mb-0">The address is 0x29. This address is how the Artemis will identify which device it is exchanging data with on the I2C SDA line.</p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+
+                    <h3>Reading data from the Sensor</h3>
+                        <p class="text-black-50 mb-0">Now to read distance data from the sensor, I ran the Read Distance example program from the SparkFun VL53L1X 4m Laser Distance Sensor Library.</p>
+                        <p class="text-black-50 mb-0">There are two modes to choose from: Short (max range is 1.3m) or Long (max range is 4m). For the purposes of this class, I chose the short distance mode. 4 meters is a long distance, especially to our relatively small robots (the sides are less than a foot long). Also, for the sake of not running into things, I want the robots to be able to accurately detect obstacles that are closer than 2 feet away.</p>
+                        <p class="text-black-50 mb-0">The Long Distance mode is the default mode, so in the setup of the Arduino program, I called the function .setDistanceModeShort().</p>
+                        <p class="text-black-50 mb-0">To test the sensor's accuracy, I collected several of it's readings at known distances. </p>
+                        <img class="img-fluid" src="assets\lab3pics\distancegraph.jpg" alt="..." /> 
+                        <p class="text-black-50 mb-0">The sensor was very accurate up to about 2 feet away. Then it began underestimating increasingly. At 3.5 feet away, it read 3.14 feet away. This is manageable, and when using the sensors on the robot in the future, I will be cautious and take these underestimations into account.</p> 
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+
+                    <h3>Two Sensors in Parallel</h3>
+                        <p class="text-black-50 mb-0">The two TOF sensors have the same address. For the Artemis to be able to communicate with both chips in parallel, either the sensors need to alternate turning on and off during each read, or one of them needs a different address.</p>
+                        <p class="text-black-50 mb-0">Basing my approach on Anya Probawo's Write Up from last year, I decided to change the address of one of the sensors. I soldered a wire from the XSHUT pin of one of the sensors to GPIO pin 8 on the Artemis. This wire allows me to shut down one of the sensors. During this shutdown in the setup of the Arduino program, I set the address of one of the sensors to 0x32.</p>
+                        <img class="img-fluid" src="assets\lab3pics\TOFshutdiwn.jpg" alt="..." /> 
+                        <p class="text-black-50 mb-0">Now the Artemis can communicate with both sensors without any mixup. Here are the readings from the sensors.</p>
+                        <img class="img-fluid" src="assets\lab3pics\sensordata.jpg" alt="..." /> 
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    
+                    <h3>Timing of Data Reading</h3>
+                        <p class="text-black-50 mb-0">Now we are interested in how long these sensor readings take. I read the time using millis() before the data was taken and again right after it was taken.</p>
+                        <img class="img-fluid" src="assets\lab3pics\timing code.jpg" alt="..." /> 
+                        <img class="img-fluid" src="assets\lab3pics\timing.jpg" alt="..." /> 
+                        <p class="text-black-50 mb-0">It can be seen that each reading takes 57 milliseconds. The bulk of this delay is from the sensor itself collecting data. If less data was collected, the delay would be shorter, but the results would be less accurate.</p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    
+                    <h3>Time Vs. Distance</h3>
+                        <p class="text-black-50 mb-0">With the sensors working, we can send their data to my laptop via Bluetooth using the command protocol from lab 2. I started out by creating a GET_TOF command.</p>
+                        <script src="https://gist.github.com/cwf54/60cf288c02317b8474ceb1059a18717f.js"></script>
+                        <p class="text-black-50 mb-0">The current time and two distance data points are sent to my laptop in the form of "T:(time)|D1:(distance1)|D2:(distance2)</p>
+                        <p class="text-black-50 mb-0">Then I modified the notification handler to read the individual data points and append them to their respective arrays.</p>
+                        <img class="img-fluid" src="assets\lab3pics\handler.jpg" alt="..." /> 
+                        <p class="text-black-50 mb-0">With the arrays set up, I plotted them using MatPlotLib</p>
+                        <img class="img-fluid" src="assets\lab3pics\plot.jpg" alt="..." /> 
+                        <img class="img-fluid" src="assets\lab3pics\finalgraph.jpg" alt="..." /> 
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3></h3>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+
                 </div>
             </section>
             <hr class="m-0" />
@@ -332,28 +362,46 @@
 
 
 
+<!-- <h3></h3>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
 
-<!--                     <h3>Example Program 1: Blinking Light</h3>
-                            <p class="text-black-50 mb-0">The simplest program to run on any board is blinking an LED. 
-                            Similar to outputting "Hello World," this program ensures that the system is set up properly.
-                            </p> 
-                            <iframe width="320" height="560" src="https://www.youtube.com/embed/8UAxMHmVeHc" title="Lab 1: Blinking light" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                      
-                        <div class="flex-shrink-0"><span class="text-primary"></span></div>
-                            <h3>Example Program 2: Serial Monitor</h3>
-                            <p class="text-black-50 mb-0">This next example tests the serial communication feature of the board. 
-                            Upon running this program, a series of print statements appear in the Serial Monitor.</p>
-                        <iframe width="640" height="360" src="https://www.youtube.com/embed/Qtf6Bwmp5pg" title="Lab 1: serial monitor" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        <div class="flex-shrink-0"><span class="text-primary"></span></div>
-                            <h3>Example Program 3: Analog Read
-                            </h3>
-                            <p class="text-black-50 mb-0">Now testing the onboard testing sensor. Notice how in the beginning of the video, 
-                                the temperature values are in the 32,200 count range. After I press my thumb onto the board, heating it up, 
-                                the temperature increases to the 32,600 count range. After I release my thumb, the temperature drops back down to 32,200 counts.
-                            </p>
-                            <iframe width="640" height="360" src="https://www.youtube.com/embed/74wRfN93ct0" title="Lab 1: analog read" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        <div class="flex-shrink-0"><span class="text-primary"></span></div>
-                            <h3>Example Program 4: PDM</h3>
-                        <p class="text-black-50 mb-0">The final example tests the microphone capabilities of the board. The Serial Monitor prints out the 
-                            frequency the microphone detects, and when I whistle into the microphone, the frequency skyrockets to the 2000 Hz range.
-                        </p>
-                        <div class="flex-shrink-0"><span class="text-primary"></span></div> -->
+                    <h3></h3>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3></h3>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3></h3>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3></h3>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3></h3>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div> -->
