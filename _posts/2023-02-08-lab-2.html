@@ -1,0 +1,109 @@
+---
+layout: post
+title: "Lab 2"
+subtitle: "Bluetooth Configuration with personal laptop"
+date: 2023-02-07 23:45:13 -0400
+background: '/img/posts/BTbg.jpg'
+---
+
+<h2 class="section-heading">Pre-Lab</h2>
+<p>The set up for this Bluetooth lab requires running a python script on a computer and an Arduino sketch on the Artemis. To run the Python scripts, we are using a virtual environment software called Jupyter Lab. When Bluetooth is configured, the Python program running on my computer can send any of a set of fixed commands to and receive a response from the Artemis. </p>
+<p>There was some struggle with getting this system set up, but thanks to the wonderful TAs and collaborative efforts on Ed Discussion, a solution to setting up Jupyter Lab on Windows 11 was found using Windows Subsystem for Linux (WSL). </p>
+<p>We were given a Codebase for this lab which provided both a Python and an Arduino demo, and could already send a few commands and messages between the devices. </p>
+<p>Before sending any commands or messages to each other, the devices must establish a connection. This is done with the Artemis's MAC address and a few common Universally Unique Identifiers  (UUIDs.) </p>
+
+<h2 class="section-heading">Configurations</h2>
+
+
+<p>The first step was finding the Artemis's MAC address. Upon running the given Arduino program, the device's MAC address is printed in the Serial Monitor. This MAC address is then stored in connections.yaml on the Python side so that my laptop will know which device to search for.</p>
+<!-- artemis mac address screenshot -->
+<img class="img-fluid" src="/img/lab2pics/MACaddress.jpg" alt="..." /> 
+<p>I then generated a new UUID and stored it in both the Python and Arduino Programs</p>
+<!-- UUID generation, lines of code -->
+
+
+<h2 class="section-heading">Going through demp.ipynb</h2>
+<p>With the Configuration set up, I went through the provided Python demo program to verify that the connection was working before trying to change or write any new code. Here is a video of a successful run through the demo.</p>
+<!-- get through demo -->
+
+<div style="position:relative;width:fit-content;height:fit-content;">
+    <a style="position:absolute;top:20px;right:1rem;opacity:0.8;" href="https://clipchamp.com/watch/hAOn2LtmSaQ?utm_source=embed&utm_medium=embed&utm_campaign=watch">
+        <img style="height:22px;" src="https://clipchamp.com/e.svg" alt="Made with Clipchamp" />
+    </a>
+    <iframe allow="autoplay;" allowfullscreen style="border:none" src="https://clipchamp.com/watch/hAOn2LtmSaQ/embed" width="640" height="360"></iframe>
+</div>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+
+<h2 class="section-heading">ECHO command</h2>
+<p>After successfully getting through the demo, it was time to implement my own commands starting with an ECHO command. The Python program sends this command along with a string, and the Arduino should Echo the string back. Here is my code for how the Arduino handles an ECHO command:</p>
+<script src="https://gist.github.com/cwf54/a533eddb375c1170d08fb403db529db5.js"></script>
+<p>To verify, here is what the response looks like in the the Serial Monitor and Jupyter Lab.</p>
+<img class="img-fluid" src="/img/lab2pics/ECHOcommand.jpg" alt="..." /> 
+
+
+
+
+<h2 class="section-heading">Get Time Command</h2>
+<p>To implement a command that returns a time stamp, I use an Arduino function called millis() which returns the number of milliseconds that have passed since the Arduino last restarted. </p>
+<script src="https://gist.github.com/cwf54/e5e1a8d9ce5264b996b739cb4b1a7ac8.js"></script>
+<img class="img-fluid" src="/img/lab2pics/TIMEcommand.jpg" alt="..."/> 
+<p></p>
+<p></p>
+
+<h2 class="section-heading">Notification Handler</h2>
+<p>Now that implementing commands is more natural, it is helpful to set up a notification handler, such that the string received form the Arduino can be received automatically (Notice that in the previous two examples I had to store the string into a variable "s" manually.)</p>
+<p>For notifications I make use of two already existing functions: start_notify() and stop_notify(). Calling start_notify() requires a notification handler. This is a callback function which automatically stores the received string. To see what the notification handler has stored, I print that variable. Here is the notification handler working with the GET_TIME_MILLIS command that we got working earlier.</p>
+<p></p>
+<div style="position:relative;width:fit-content;height:fit-content;">
+    <a style="position:absolute;top:20px;right:1rem;opacity:0.8;" href="https://clipchamp.com/watch/J76ihkjY5sS?utm_source=embed&utm_medium=embed&utm_campaign=watch">
+        <img style="height:22px;" src="https://clipchamp.com/e.svg" alt="Made with Clipchamp" />
+    </a>
+    <iframe allow="autoplay;" allowfullscreen style="border:none" src="https://clipchamp.com/watch/J76ihkjY5sS/embed" width="640" height="360"></iframe>
+</div>
+<p>To stop the notification handler, you just call stop_notify().</p>
+
+<h2 class="section-heading">Get Temperature Command</h2>
+<p>Now let's start sending data from the Artemis to my laptop. Using the temperature reading setup from the Analog_Read example sketch (See Lab 1), here is the code for a Get Temperature command:</p>
+<script src="https://gist.github.com/cwf54/565f215b864a347b2b8e16e826ddf576.js"></script>
+<p>This program samples the temperature sensor every second for 5 seconds, and then sends all 5 samples as well as their timestamps back to my laptop.</p>
+<img class="img-fluid" src="/img/lab2pics/GETTEMPcommand.jpg" alt="..."/> 
+<h2 class="section-heading">RAPID Get Temperature Command</h2>
+<p>What if samples came into to my laptop much quicker than once a second? Most likely, they will. This final command will request as many samples as the Artemis can send in 5 seconds. Here is the Arduino code for it:</p>
+<script src="https://gist.github.com/cwf54/48e9b7d1513d9901e9ba27b4bb3a7fb6.js"></script>
+<p>Instead of concatenating all of the samples within the Arduino progam like I did in the previous command protocol, the board sends each sample one at a time. This is because we have defined the maximum character count for a sent string to be 151. With variable lengths of time stamps, it is safer to send one sample at a time, especially when you have a notification handler that will be able to store all of the incoming values.</p>
+<p>I created a new RAPID notification handler, which appends all of the incoming strings into one long string. Here is the new notification handler in action:</p>
+<div style="position:relative;width:fit-content;height:fit-content;">
+    <a style="position:absolute;top:20px;right:1rem;opacity:0.8;" href="https://clipchamp.com/watch/MrEcAk6g0PH?utm_source=embed&utm_medium=embed&utm_campaign=watch">
+        <img style="height:22px;" src="https://clipchamp.com/e.svg" alt="Made with Clipchamp" />
+    </a>
+    <iframe allow="autoplay;" allowfullscreen style="border:none" src="https://clipchamp.com/watch/MrEcAk6g0PH/embed" width="640" height="360"></iframe>
+</div>
+
+<p>As you can see, you can check on the strings while the command is still sending over the data. Also, the final data samples are the same, verifying that the notification handler worked properly. </p>
+
+
+<h2 class="section-heading">Limitations</h2>
+<p>Before getting too excited about sending hoards of information back and forth between my laptop and the Artemis, it is important to consider what the Artemis can handle. The board has 384 kBytes of RAM, which is 3,072,000 bits. This is how many bits the board could send at one time before something bad happens (maybe the board crashes, the Bluetooth connection is lost, etc.) Let's consider what this amount of RAM could send.</p>
+<p>To be safe, let's use 20% of the RAM for Bluetooth communication. The board could be using its RAM for many other things. 20% is 614,400 bits. </p>
+<p>Looking ahead to Lab 3, the fastest I2C frequency of the Time of Flight sensors that we will be using is 400kHz. Let's consider a frequency of 100kHz. Asumming that data is sent in units of 2 bytes (16 bits), we could store data on the Artemis for 0.384 seconds befores sending it to my laptop.  </p>
+<img class="img-fluid" src="/img/lab2pics/limitations.jpg" alt="..."/> 
+<p>With smaller frequencies, we could store data for longer periods of time (proportionally). Recall that when the frequency was 1 Hz for the original GET TEMP command, we stored data for 5 seconds with no problem. If we knew we could use more RAM we could store data for longer as well, but again, if we have a notification handler, we could make the laptop do the work of appending the samples.</p>
+
+<!-- <blockquote class="blockquote">The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.</blockquote> -->
+
+<p></p>
+
+
+<p></p>
+
+<!-- <img class="img-fluid" src="https://source.unsplash.com/Mn9Fa_wQH-M/800x450" alt="Demo Image">
+<span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span> -->
+
+<p></p>
+<p></p>
+
+<p>Placeholder text by <a href="http://spaceipsum.com/">Space Ipsum</a>. Background image from <a href="https://www.pinterest.com/pin/bluetooth--499688521159203105/">Pinterest</a>.</p>

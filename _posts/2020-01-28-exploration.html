@@ -1,0 +1,78 @@
+---
+layout: post
+title: "Lab 4"
+subtitle: "The IMU"
+date: 2023-02-23 23:45:13 -0400
+background: '/img/posts/03.jpg'
+---
+
+
+<h2 class="section-head">Introduction</h2>
+
+<p>In this lab, we are exploring the uses of an Inertial Measurement Unit (IMU). The sensor we are using is a board from Sparkfun that conveniently connected to the QWIIC breakout board the TOF sensors were connected to in Lab 3.</p>
+<img class="img-fluid" src="img\lab4\IMU.jpg" alt="Sparkfun IMU board">
+<span class="caption text-muted">The Sparkfun IMU board</span>
+
+<p>This IMU contains a "3-axis gyroscope, 3-axis accelerometer, 3-axis compass, and a Digital Motion Processor™" as per the data sheet. For this lab, we will be focusing on the data collected by the accelerometer and the gyroscope. </p>
+<!-- footnote above for data sheet?-->
+
+<h2 class="section-heading">IMU Set Up</h2>
+<p>To start, I connected the IMU to the Artemis via a QWIIC connector and the QWIIC connected board.</p>
+<!-- connection picture-->
+<p>Since this is a new component, I ran the first Example program in the SparkFun 9DOF IMU Breakout - ICM 20948 - Arduino Library. This program prints out data from the ...? Here is a video of the values changing as I move the IMU. </p>
+<!--example code working video-->
+<!--discussion of AD0 value-->
+<!--discussion of how acc and gyro data determines RPY-->
+
+<h2 class="section-heading">The Accelerometer</h2>
+<p>Starting with the Accelerometer, we can start calculating pitch and roll. Using the equations given in the example code from lecture, I calculated these values like this:</p>
+<img class="img-fluid" src="img\lab4\PR_accel_equations.jpg">
+<p>I printed these values to the Serial Monitor and tested their accuracy with known angular positions of the board. I used the flat table and the upright side of a sturdy box to represent the 0, 90, and -90 degree angle. Here is a video of this test:</p>
+<!--angle video-->
+<p>While the data is accurate for the most part, it is quite noisy. To quantify this noise, I did a Fast Fourier Transform (FFT) analysis on 1024 pitch data points. I based my program on a Python FFT tutorial.</p>
+<!--link tutorial-->
+<p>Here is the program:</p>
+
+<!-- add FFT code -->
+<p>And here is the FFT graph. While the peak at 0 Hz is clear, there is still a lot of data in the remaining bins.</p>
+<img class="img-fluid" src="img\lab4\acc_before_LPF.jpg">
+<p>To combat this noise, I implemented a Low Pass Filter with the code given in lecture. I used 20 Hz as my cut-off frequency.</p>
+<img class="img-fluid" src="img\lab4\LPF_code.jpg">
+<p>Here is what the FFT analysis on the pitch looks like with this filter. As you can see, the noise is minimized.</p>
+<img class="img-fluid" src="img\lab4\acc_after_LPF.jpg">
+
+
+<h2 class="section-heading">The Gyroscope</h2>
+<p>While the Low Pass Filter reduced the noise, there could still be less noise. Further more, using a filter like this can be timely and greatly slow down the sampling times of this importat data. We can introduce data from the gyroscope and using fusion sensing to get more accurate, less noisy, and smoother data for the pitch and the roll.</p>
+<p>First, I again used the example code from class to output pitch, roll, and yaw from the gyroscope alone.</p>
+<img class="img-fluid" src="img\lab4\gyro_code.jpg">
+<p>Here is both the gyroscope and PR_accelerometer data. </p>
+<!-- why are they different? -->
+<!-- <img class="img-fluid" src="img\lab4\gyro_code.jpg"> -->
+<!-- Serial Monitor of gyro and accel -->
+<p>Once again I tested the values of these measurements with known positions of the IMU. Once again it was noisy. </p>
+<p>For sensor fusion, I used the complimentary filter code provided in lecture:</p>
+<img class="img-fluid" src="img\lab4\comp_filter_code.jpg">
+<p>Here is the FFT analysis on the pitch. It shows less noise than the low pass filter. </p>
+<img class="img-fluid" src="img\lab4\pitch_after_comp.jpg">
+<p>To further exhibit the benefits of the sensor fusion, here are videos of the filtered pitch and roll outputs alongiside the indivual sensor outputs with known positions of the IMU.</p>
+<!-- roll and pitch videos -->
+
+<p></p>
+
+
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+
+
+<h2 class="section-heading"> </h2>
+
+
+<img class="img-fluid" src="" alt="Demo Image">
+<span class="caption text-muted"></span>
+
+
+<p>Placeholder text by <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by <a href="https://unsplash.com/">Unsplash</a>.</p>
