@@ -115,23 +115,27 @@
                         <p class="text-black-50 mb-0"> </p>
                         <p class="text-black-50 mb-0"> </p>
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
-                    <h3>Attaching the components to the Robots</h3>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
+                    <h3>Lower Limit PWM value</h3>
+                        <p class="text-black-50 mb-0">The car naturally goes quite fast. With a PWM value range of [0, 255], any number above 100 has the car out of arm's reach within a couple of seconds. With the car working, I tried to find the lowest PWM values that could make the car go forward as slowly as possible.</p>
+                        <p class="text-black-50 mb-0">I did this with a guess-and-check method, increasing the PWM value if the wheels weren't turning continuously and decreading the PWM values if the wheels were turning too quickly. </p>
+                        <p class="text-black-50 mb-0">I ended up at a value of 50. Here is the robot moving forward with this PWM value. </p>
+                        <iframe width="320" height="560" src="https://www.youtube.com/embed/gWaO89JDoR0" title="50 PWM on ground" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <p class="text-black-50 mb-0">While it is moving forward, here is what 40 PWM looks like on both sets of wheels:</p>
+                        <iframe width="320" height="560" src="https://www.youtube.com/embed/1nPyilwyogM" title="50PWM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <p class="text-black-50 mb-0">One set of the wheels is doing most of the work. To combat this and even out the speed of the wheels to acheive smoother forward motions, I callibrated the PWM values by multiplying the PWM of the slower wheels by a factor of the PWM of the faster wheels. </p>
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
-                    <h3></h3>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
+                    <h3>Calibration Factor</h3>
+                        <p class="text-black-50 mb-0">I found this calibration factor also by guess and checking, and ended up with PWM values of 70 and 50. This makes the calibration factor 7/5. Here are the wheels running at these values:</p>
+                        <iframe width="320" height="560" src="https://www.youtube.com/embed/C82VcQ4RqeU" title="Calibrated wheels" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <p class="text-black-50 mb-0">Visually, the speeds ar more even. Here is the car moving forward for approximately 6 feet:</p>
+                        <iframe width="640" height="360" src="https://www.youtube.com/embed/j-ZenNQoxdI" title="Straight line" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                        <p class="text-black-50 mb-0">Here is the code that I used:</p>
+                        <script src="https://gist.github.com/cwf54/c2d54344ab79e654a116f76bc1469bc6.js"></script>
                         <p class="text-black-50 mb-0"> </p>
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
 
-                    <h3></h3>
-                        <p class="text-black-50 mb-0"> </p>
+                    <h3>Open Loop Control</h3>
+                        <p class="text-black-50 mb-0">To implement Open Loop control, I added a function to my bluetooth program that I have been writing to in all of the labs called SET_PWM. This function will take two integers as inputs in the Bluetooth Python program, and set them as PWM values for pins 5 and 16 on the Artemis. The robot uses these values for 3 seconds before stopping. Here is the case statement for this command:</p>
+                        <script src="https://gist.github.com/cwf54/c5a61ddccfde8d912681b1b663db4ddc.js"></script>
                         <p class="text-black-50 mb-0"> </p>
                         <p class="text-black-50 mb-0"> </p>
                         <p class="text-black-50 mb-0"> </p>
