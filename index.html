@@ -66,7 +66,9 @@
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
                     <h3>Pre-Lab</h3>
-                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0">For our system, we are driving each motor with one motor driver even though each motor driver could drive two motors each. To configure this set-up, I wired the chips to be parallel coupled. Here is how the drivers are connected to the Artemis, the motors, and the 850maH battery:</p>
+                        <img class="img-fluid" src="assets\lab5\wiring.jpg" alt="Sparkfun IMU board">
+                        <p class="text-black-50 mb-0">Recall that the Artemis is powered with a 650maH battery. The motor drivers will be powered with separate batteries, because motors are so noisy, that it is worthwhile to isolate the motor system as much as possible from the sensors. If the sensors were too physically close to the motor drivers or the motors, or if all of the devices were powered by the same battery, then the sensors and the Artemis could easily pick up unreliable data. </p>
                         <p class="text-black-50 mb-0"> </p>
                         <p class="text-black-50 mb-0"> </p>
                         <p class="text-black-50 mb-0"> </p>
@@ -74,8 +76,7 @@
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
 
                     <h3>Testing the Motor Drivers</h3>
-                        <p class="text-black-50 mb-0">For our system we are driving each motor with one motor driver even though each motor driver could drive two motors each. To configure this set-up, I wired the chips to be parallel coupled.  </p>
-                        <!-- maybe include picture of wiring here if you want -->
+                        
                         <p class="text-black-50 mb-0">To test this wiring and my soldering skills, before driving the motors, I tested the drivers by driving them with PWM signals from the Artemis and viewing the output on an oscilloscope. I powered the driver with a 3.7V signal from the power supply, since this is the voltage supplied by the 850maH batteries we will be power them with later. </p>
                         <img class="img-fluid" src="assets\lab5\drivertesting.jpg" alt="Sparkfun IMU board">
                         <div class="flex-shrink-0"><span class="text-primary">Here you can see the driver (highlighted in yellow) connected to the Artemis, the oscilloscope, and the power supply.</span></div>
