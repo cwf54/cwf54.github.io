@@ -68,6 +68,8 @@
                     <h3>Pre-Lab</h3>
                         <p class="text-black-50 mb-0">For our system, we are driving each motor with one motor driver even though each motor driver could drive two motors each. To configure this set-up, I wired the chips to be parallel coupled. Here is how the drivers are connected to the Artemis, the motors, and the 850maH battery:</p>
                         <img class="img-fluid" src="assets\lab5\wiring.jpg" alt="Sparkfun IMU board">
+                        <div class="flex-shrink-0"><span class="text-primary">I based my connections on Ryan Chan's from last year</span></div>
+
                         <p class="text-black-50 mb-0">Recall that the Artemis is powered with a 650maH battery. The motor drivers will be powered with separate batteries, because motors are so noisy, that it is worthwhile to isolate the motor system as much as possible from the sensors. If the sensors were too physically close to the motor drivers or the motors, or if all of the devices were powered by the same battery, then the sensors and the Artemis could easily pick up unreliable data. </p>
                         <p class="text-black-50 mb-0"> </p>
                         <p class="text-black-50 mb-0"> </p>
@@ -84,13 +86,14 @@
                         <img class="img-fluid" src="assets\lab5\drivertestingcode.jpg" alt="Sparkfun IMU board">
                         <p class="text-black-50 mb-0">As expected, when driving the driver with PWM inputs, I saw PWM outputs in the oscilloscope.</p>
                         <img class="img-fluid" src="assets\lab5\scope.jpg" alt="Sparkfun IMU board">
-
                         <p class="text-black-50 mb-0"> </p>
                         <p class="text-black-50 mb-0"> </p>
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
-                    <h3></h3>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
+                    <h3>Testing the Drivers with the Motors</h3>
+                        <p class="text-black-50 mb-0">Now instead of viewing the output on the oscillosope, I connected the wires to a motor on the robot. I altered my code so that every 5 seconds the signals from the Artemis were altnerating. This changes the directions of the wheels. Here is the new code:</p>
+                        <script src="https://gist.github.com/cwf54/59c9b92f08986cc138ccfd857b0cfa47.js"></script>
+                        <p class="text-black-50 mb-0"> \Here are the wheels turning as expected:</p>
+                        <iframe width="640" height="360" src="https://www.youtube.com/embed/IspzU_kKYbg" title="Wheels spinning 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         <p class="text-black-50 mb-0"> </p>
                         <p class="text-black-50 mb-0"> </p>
                         <p class="text-black-50 mb-0"> </p>
