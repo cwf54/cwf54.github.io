@@ -74,9 +74,16 @@
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
 
                     <h3>Testing the Motor Drivers</h3>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0">For our system we are driving each motor with one motor driver even though each motor driver could drive two motors each. To configure this set-up, I wired the chips to be parallel coupled.  </p>
+                        <!-- maybe include picture of wiring here if you want -->
+                        <p class="text-black-50 mb-0">To test this wiring and my soldering skills, before driving the motors, I tested the drivers by driving them with PWM signals from the Artemis and viewing the output on an oscilloscope. I powered the driver with a 3.7V signal from the power supply, since this is the voltage supplied by the 850maH batteries we will be power them with later. </p>
+                        <img class="img-fluid" src="assets\lab5\drivertesting.jpg" alt="Sparkfun IMU board">
+                        <div class="flex-shrink-0"><span class="text-primary">Here you can see the driver (highlighted in yellow) connected to the Artemis, the oscilloscope, and the power supply.</span></div>
+                        <p class="text-black-50 mb-0"> I used PWM code that I found on Ryan Chan's website from last year's class to output a PWM signal from the Artemis.</p>
+                        <img class="img-fluid" src="assets\lab5\drivertestingcode.jpg" alt="Sparkfun IMU board">
+                        <p class="text-black-50 mb-0">As expected, when driving the driver with PWM inputs, I saw PWM outputs in the oscilloscope.</p>
+                        <img class="img-fluid" src="assets\lab5\scope.jpg" alt="Sparkfun IMU board">
+
                         <p class="text-black-50 mb-0"> </p>
                         <p class="text-black-50 mb-0"> </p>
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
