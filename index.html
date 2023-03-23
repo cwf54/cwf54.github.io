@@ -93,12 +93,16 @@
                     <p class="text-black-50 mb-0"> </p>
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
-                    <h3></h3>
+                    <h3>Derivative Constant</h3>
+                        <p class="text-black-50 mb-0"> With a working proportional constant, it's time to add a derivative constant. This constant will make motor control more powerful by making the error response more adaptive. </p>
+                        <p class="text-black-50 mb-0"> I knew that with the derivative constant, I could make the initial speed of the robot faster. I increased the Kp value to 0.09 and started out with a Kd value of 1.5. The run would complete in about 6 seconds, and the robot would not hit the wall. I wanted to see how low I could make Kd before the robot would hit the wall. I ran the command, dropping Kd by 0.01 each time. </p>
+                        <p class="text-black-50 mb-0"> I ended up with a Kd value of 0.1 (and Kp of 0.09.) The robot finishes in about 4.5 seconds now, a significant decrease from the 7.5 second runs of the solely proportional control runs. </p>
+                        <p class="text-black-50 mb-0"> Here are the data and recordings of three runs with these constants.</p>
                         <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
+                        <img class="img-fluid" src="assets\lab6\d_distance.jpg" alt="distance data">
+                        <img class="img-fluid" src="assets\lab6\d_speed.jpg" alt="distance data">
+                        <iframe width="670" height="377" src="https://www.youtube.com/embed/oEhF_t0A-zc" title="P and D" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
                     <h3></h3>
                         <p class="text-black-50 mb-0"> </p>
