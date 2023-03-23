@@ -75,19 +75,23 @@
                         <p class="text-black-50 mb-0">Now, the notification handler will append to the time, distance, and speed arrays as each data point arrives to my computer. Here is the notification handler in Python:</p>
                         <script src="https://gist.github.com/cwf54/6a787f4f5ccc07f3993f9fb10d45ab45.js"></script>
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
-                    <h3></h3>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
+                    <h3>PID command set up in Arduino</h3>
+                        <p class="text-black-50 mb-0"> First I approached finding an appropriate proportion constant. I created a PID function which compares the current distance from the wall to the desired distance (300mm). The difference between the two distances is the error, which is multiplied by the proportional constant Kp to determine the speed of the motors (PWM value).</p>
+                        <script src="https://gist.github.com/cwf54/0db84df21e4e061517575a5d5127daf5.js"></script>
+                        <p class="text-black-50 mb-0"> Unless the speed is 0, the value of the speed is never outside of the range [40, 254]. 40 is the minimum PWM I found in lab 5, and 255 is the absolute maximum PWM. </p>
+                        <p class="text-black-50 mb-0"> I also use a sampling rate to determine how many data points a 15 second run should store.</p>
+                        <p class="text-black-50 mb-0"> The PID command takes in the value of Kp for easy tweaking. The command protocol collects the distance measurements and then calls PID() for 15 seconds. At the end of these 15 seconds, the robot stops no matter what. In a successful run, it takes < 10 seconds for the robots to find 300mm from 2 meters away. </p>
+                        <script src="https://gist.github.com/cwf54/d4b39cc97a737d724f82f0839642a8c9.js"></script>
+                        <p class="text-black-50 mb-0"> When the robot is done moving, the command finishes by sending over the collected distance and speed data.</p>
+                    <h3>Proportional Constant</h3>
+                    <p class="text-black-50 mb-0">With some experimentation, I came up with a value of Kp = 0.08. This is the highest value I could use before the robot started hitting the wall. Here are the videos and data from 3 runs of the robot using this value with an initial position just short of 2 meters away from the wall.</p>
+                    <img class="img-fluid" src="assets\lab6\distance_p.jpg" alt="distance data">
+                    <img class="img-fluid" src="assets\lab6\speed_p.jpg" alt="speed data">
+                    <iframe width="640" height="360" src="https://www.youtube.com/embed/Phic4QmKpy0" title="PID with P" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <p class="text-black-50 mb-0"> </p>
+                    <p class="text-black-50 mb-0"> </p>
+                    <p class="text-black-50 mb-0"> </p>
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
-                    <h3></h3>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
                     <h3></h3>
                         <p class="text-black-50 mb-0"> </p>
