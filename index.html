@@ -70,7 +70,7 @@
                         <p class="text-black-50 mb-0"> I did not have to change how the Python notification handler works. The biggest change is that I stored the robot data in a 2-dimensional matrix in the Arduino program. </p>
                         <img class="img-fluid" src="assets\lab6\arraydef.jpg" alt="definition of data array">
                         <div class="flex-shrink-0"><span class="text-primary">This array stores 150 data points and assumes that one row of time, distance, and speed data is a string of max 30 chars.</span></div>
-                        <p class="text-black-50 mb-0">During runtime, data is saved one point at a time, then when the robot is done moving, data is sent one point at a time. Here is the data being sent:</p>
+                        <p class="text-black-50 mb-0">During runtime, data is saved one point at a time, then when the robot is done moving, data is sent to the Python program one point at a time. Here is the data being sent:</p>
                         <script src="https://gist.github.com/cwf54/4366b3d25ba7d828e5905c5f6cd33ab6.js"></script>
                         <p class="text-black-50 mb-0">Now, the notification handler will append to the time, distance, and speed arrays as each data point arrives to my computer. Here is the notification handler in Python:</p>
                         <script src="https://gist.github.com/cwf54/6a787f4f5ccc07f3993f9fb10d45ab45.js"></script>
