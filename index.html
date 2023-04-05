@@ -26,12 +26,13 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#lab6">Lab 6</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Lab 5</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Lab 4</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Lab 3</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Lab 2</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Lab 1</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#lab7">Lab 7: Kalman Filter</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#lab6">Lab 6: PID</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Lab 5: Motor Control</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Lab 4: IMU</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Lab 3: TOF</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Lab 2: Bluetooth</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Lab 1: Artemis</a></li>
                 </ul>
             </div>
         </nav>
@@ -58,6 +59,57 @@
                 </div>
             </section>
             <hr class="m-0" />
+            <!-- LAB7 -->
+            <section class="resume-section" id="lab7">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Lab 7: Kalman Filter</h2>
+                    <div class="flex-shrink-0"><span class="text-primary">March 30, 2023</span></div>
+
+                    <h3>Drag and Momentum Estimation</h3>
+                        <p class="text-black-50 mb-0"> To build the state space for the Kalman Filter, I first found values for drag and momentum, which I will use in my A and B matrices. </p>
+                        <img class="img-fluid" src="assets\lab7\meq.jpg" alt="">
+                        <img class="img-fluid" src="assets\lab7\deq.jpg" alt="">
+                        <img class="img-fluid" src="assets\lab7\statespaceeq.jpg" alt="">
+
+                        <p class="text-black-50 mb-0">To find these values, I found the steady state speed and the 90% rise time by running the car at a constant PID input of 110, which I found to be the maximum value from lab 6. </p>
+                        <img class="img-fluid" src="assets\lab7\d1vst.jpg" alt="distance vs time">
+                        <img class="img-fluid" src="assets\lab7\svst.jpg" alt="speed vs time">
+                        <p class="text-black-50 mb-0">Between 2 and 2.5 seconds, the speed oscillates between 2000mm/s, so I take this to be the steady state speed. The speed graph would likely be more smooth if I sampled the distance more often while the car was moving.</p>
+                        <p class="text-black-50 mb-0">90% of the steady state speed is 1800mm/s which occurs at approximately 1.75 seconds.</p>
+                        <p class="text-black-50 mb-0">Assuming u is 1, we get these values for drag and momentum:</p>
+                        <img class="img-fluid" src="assets\lab7\dm_slns.jpg" alt="distance vs time">
+
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3></h3>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3></h3>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3></h3>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3></h3>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div> 
+                </div>
+            </section>
             <!-- LAB6 -->
             <section class="resume-section" id="lab6">
                 <div class="resume-section-content">
