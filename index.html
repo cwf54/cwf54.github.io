@@ -82,9 +82,19 @@
                         <img class="img-fluid" src="assets\lab7\a_b_matrices.jpg" alt="matrices">
 
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
-                    <h3></h3>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
+                    <h3>Sanity Check Kalman Filter through Jupyter</h3>
+                        <p class="text-black-50 mb-0">The final values to find before implementing the Kalman Filter are the sigma values, defined in lecture.</p>
+                        <img class="img-fluid" src="assets\lab7\sigmas.jpg" alt="sigma definitions">
+                        <p class="text-black-50 mb-0">My data is sampled about every 0.27 seconds, so I am using 19.24 for my sigma 1 and 2 values. For sigma 3, I use the suggested value of 20.</p>
+                        <p class="text-black-50 mb-0">Here is the Kalman Filter setup through Jupyter Lab. I ran the simulation on data saved from a PID run in Lab 6. This program is is from Anya Prabowo (https://anyafp.github.io/ece4960/labs/lab7/)</p>
+                        <script src="https://gist.github.com/cwf54/4a77d86093c1d33a5e72bc3e18011a97.js"></script>
+                        <p class="text-black-50 mb-0">This is what the filter outputs compared to the original data.</p>
+                        <img class="img-fluid" src="assets\lab7\suggestedsigmas.jpg" alt="KF output">
+                        <p class="text-black-50 mb-0">I then tried to amp up the sigma 1 and 2 values up to 100 to see the effects. Increasing these values increases the uncertainty of the model, which means that the values of the sensors would be relied upon more rather than leaning on the model.</p>
+                        <img class="img-fluid" src="assets\lab7\100_20.jpg" alt="high uncertainty">
+                        <p class="text-black-50 mb-0">Then I wanted to see what happend with a high sigma 3. Increasing this value does the opposite of the prior test. More trust is put into the model and less onto the sensors.</p>
+                        <img class="img-fluid" src="assets\lab7\19_100.jpg" alt="high uncertainty">
+                        <p class="text-black-50 mb-0">Ultimately, I will be using the suggested values shown in the first test.</p>
                         <p class="text-black-50 mb-0"> </p>
                         <p class="text-black-50 mb-0"> </p>
                         <p class="text-black-50 mb-0"> </p>
