@@ -26,6 +26,8 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#lab8">Lab 8: stunt!</a></li>
+
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#lab7">Lab 7: Kalman Filter</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#lab6">Lab 6: PID</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Lab 5: Motor Control</a></li>
@@ -59,6 +61,53 @@
                 </div>
             </section>
             <hr class="m-0" />
+
+            <!-- Lab 8-->
+            <section class="resume-section" id="awards">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Lab 8: Task A Stunt</h2>
+                    <div class="flex-shrink-0"><span class="text-primary">March 13, 2023</span></div>
+
+                    <h3>Creating the stunt protocol</h3>
+                        <p class="text-black-50 mb-0">Since I chose task A when implementing PID, my robot must do a back flip. In order to do this back flip, the robot rides as quickly as possible toward the wall (without using PID), then before it hits the wall, it suddenly switches to driving backwards as fast as possible.</p>
+                        <p class="text-black-50 mb-0">Here is the Stunt Command protocol in Arduino, using the extrapolation function from lab 7 to estimate when to do the backflip. </p>
+                        <script src="https://gist.github.com/cwf54/910440c944396f8eefd78f24f0de8d97.js"></script>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3>Trial Run</h3>
+                        <p class="text-black-50 mb-0">Here is the robot doing the backflip. And the data to go with it. I was unable to get a run where the robot successfully drives back to the starting line. My TOF sensor was angled upward in a way that was fine for detecting distances from the wall for PID, but when the robot flips over and begins driving backwards, the TOF sensor is angled toward the ground. This angle makes all of the measurements inaccurate. That is why the distance graph plateaus at a low value at the end of the run. </p>
+                        <iframe width="320" height="560" src="https://www.youtube.com/embed/NpWwjxZpcHQ" title="Stunt try" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <img class="img-fluid" src="assets\lab8\distance graph.jpg" alt="">
+
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3>Tragedy Strikes</h3>
+                        <p class="text-black-50 mb-0">While trying to fix the problem of the TOF pointing at the ground, I was moving around all of the sensors on the robot and something seemed to have broke. </p>
+                        <p class="text-black-50 mb-0">The program would no longer start because the sensors couldn't be initialized, and I did not have enough time to find the disconnect or resolder the connections. </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3></h3>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3></h3>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div> 
+                </div>
+            </section>
             <!-- LAB7 -->
             <section class="resume-section" id="lab7">
                 <div class="resume-section-content">
