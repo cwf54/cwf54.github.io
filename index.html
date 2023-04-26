@@ -26,8 +26,8 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#lab9">Lab 9: Mapping</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#lab8">Lab 8: stunt!</a></li>
-
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#lab7">Lab 7: Kalman Filter</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#lab6">Lab 6: PID</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Lab 5: Motor Control</a></li>
@@ -62,11 +62,65 @@
             </section>
             <hr class="m-0" />
 
+            <!-- Lab 9 -->
+            <section class="resume-section" id="awards">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Lab 9: Mapping</h2>
+                    <div class="flex-shrink-0"><span class="text-primary">April 20, 2023</span></div>
+
+                    <h3>Angular PID</h3>
+                        <p class="text-black-50 mb-0">To map a room, the robot is place at 5 specified positions throughout the room. In those positions, it will spin 360 degrees, taking distance positions while it spins. Plotting all of these distances should map out the entire room.</p>
+                        <p class="text-black-50 mb-0">For my spinning implementation, I chose angular PID. My angular PID function is based on Anya Prabowo's.(https://anyafp.github.io/ece4960/labs/lab9/)</p>
+                        <p class="text-black-50 mb-0">Here is my implementation:</p>
+                        <script src="https://gist.github.com/cwf54/365bfee02de0b27b2ba413aa1493c5da.js"></script>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0">Here is a video of the robot spinning:</p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3>Sanity Check: Polar Plots</h3>
+                        <p class="text-black-50 mb-0">I ran the Angular PID at each of the five positions in the room. As a sanity check, I plotted the distances on a polar plot.</p>
+                        <img class="img-fluid" src="assets\lab9\polar0_0.jpg" alt="">
+                        <img class="img-fluid" src="assets\lab9\polar_03.jpg" alt="">
+                        <img class="img-fluid" src="assets\lab9\polar5n3.jpg" alt="">
+                        <img class="img-fluid" src="assets\lab9\polar53.jpg" alt="">
+                        <img class="img-fluid" src="assets\lab9\polar2n3.jpg" alt="">
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0">I am satisfied with the clarity of the room's corners in these plots. The plots are not oriented in the same way, so I added varying amount of radians to each theta array corresponding to the distances so that the plots would fit together on the final map.</p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3>The Map</h3>
+                        <p class="text-black-50 mb-0">Next, I had to turn the distance and angle measurements into x and y coordinates. Ryan Chan who took the class last year created a very useful function to complete this task, which I used (https://pages.github.coecis.cornell.edu/rc627/ECE-4960/lab9.html)</p>
+                        <p class="text-black-50 mb-0">In the function, he converts the measurements into x and y coordinates using transformation matrices from Lecture 2 to take the dot product between the distance and the angle. </p>
+                        <p class="text-black-50 mb-0">After some shifting of thetas to align all of the coordinates, here is the final map:</p>
+                        <img class="img-fluid" src="assets\lab9\map.jpg" alt="">
+
+                        <p class="text-black-50 mb-0">The shape of the room and the box in the upper left corner are pretty defined, but I don't know why the box at the bottom of the room is offset and poorly defined (the edges are rounded.)</p>
+                        <p class="text-black-50 mb-0">Nonetheless, I can draw lines over the coordinates to create a map of the room that will be used by the simulator in lab 10.</p>
+                        <img class="img-fluid" src="assets\lab9\mapwithlines.jpg" alt="">
+
+                        <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3></h3>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3></h3>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div> 
+                </div>
+            </section>
+
             <!-- Lab 8-->
             <section class="resume-section" id="awards">
                 <div class="resume-section-content">
                     <h2 class="mb-5">Lab 8: Task A Stunt</h2>
-                    <div class="flex-shrink-0"><span class="text-primary">March 13, 2023</span></div>
+                    <div class="flex-shrink-0"><span class="text-primary">April 13, 2023</span></div>
 
                     <h3>Creating the stunt protocol</h3>
                         <p class="text-black-50 mb-0">Since I chose task A when implementing PID, my robot must do a back flip. In order to do this back flip, the robot drives as quickly as possible toward the wall (without using PID), then before it hits the wall, it suddenly switches to driving backwards as fast as possible.</p>
