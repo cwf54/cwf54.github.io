@@ -26,6 +26,8 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#lab9">Lab 11: Localization</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#lab9">Lab 10: Localization Simulator</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#lab9">Lab 9: Mapping</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#lab8">Lab 8: stunt!</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#lab7">Lab 7: Kalman Filter</a></li>
@@ -61,6 +63,117 @@
                 </div>
             </section>
             <hr class="m-0" />
+
+            <!-- section template: -->
+<!-- Awards-->
+<!-- <section class="resume-section" id="awards">
+    <div class="resume-section-content">
+        <h2 class="mb-5">Lab : </h2>
+        <div class="flex-shrink-0"><span class="text-primary">February 1, 2023</span></div>
+
+        <h3></h3>
+            <p class="text-black-50 mb-0"> </p>
+            <p class="text-black-50 mb-0"> </p>
+            <p class="text-black-50 mb-0"> </p>
+            <p class="text-black-50 mb-0"> </p>
+            <p class="text-black-50 mb-0"> </p>
+        <div class="flex-shrink-0"><span class="text-primary"></span></div>
+        <h3></h3>
+            <p class="text-black-50 mb-0"> </p>
+            <p class="text-black-50 mb-0"> </p>
+            <p class="text-black-50 mb-0"> </p>
+            <p class="text-black-50 mb-0"> </p>
+            <p class="text-black-50 mb-0"> </p>
+        <div class="flex-shrink-0"><span class="text-primary"></span></div>
+        <h3></h3>
+            <p class="text-black-50 mb-0"> </p>
+            <p class="text-black-50 mb-0"> </p>
+            <p class="text-black-50 mb-0"> </p>
+            <p class="text-black-50 mb-0"> </p>
+            <p class="text-black-50 mb-0"> </p>
+        <div class="flex-shrink-0"><span class="text-primary"></span></div>
+        <h3></h3>
+            <p class="text-black-50 mb-0"> </p>
+            <p class="text-black-50 mb-0"> </p>
+            <p class="text-black-50 mb-0"> </p>
+            <p class="text-black-50 mb-0"> </p>
+            <p class="text-black-50 mb-0"> </p>
+        <div class="flex-shrink-0"><span class="text-primary"></span></div>
+        <h3></h3>
+            <p class="text-black-50 mb-0"> </p>
+            <p class="text-black-50 mb-0"> </p>
+            <p class="text-black-50 mb-0"> </p>
+            <p class="text-black-50 mb-0"> </p>
+            <p class="text-black-50 mb-0"> </p>
+        <div class="flex-shrink-0"><span class="text-primary"></span></div> 
+    </div>
+</section> -->
+
+
+<!-- Lab10-->
+            <section class="resume-section" id="awards">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Lab 10: Localization Simulator</h2>
+                    <div class="flex-shrink-0"><span class="text-primary">April 27, 2023</span></div>
+
+                    <h3></h3>
+                        <p class="text-black-50 mb-0">In this lab, we set up and implement a grid localization simulation using a Bayes Filter. The simulation is done through Jupyter Notebooks. We are simulating localization before implementing it on the real robot to test out the functions in a more stable environment.</p>
+                        <p class="text-black-50 mb-0">Previously in Lab 9, we used the ground truth location of the robot to map a room's boundaries. </p>
+
+                        <p class="text-black-50 mb-0">The functions I used to do this lab are all from Anya Prabowo's 2022 website: https://anyafp.github.io/ece4960/labs/lab11/</p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3>Simulation Set Up</h3>
+                        <p class="text-black-50 mb-0">To start the lab, we were given the code to start the simulation and plotting software. These plots looks like this:</p>
+                        <img class="img-fluid" src="assets\lab10\simstarter.jpg" alt="">
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3>Implementions</h3>
+                        <p class="text-black-50 mb-0">Now delving into the functions that I used, which again are from Anya's website.</p>
+                        <p class="text-black-50 mb-0">The first function is Compute Control, which computes these equations based on the current and previous position of the robot:</p>
+                        <img class="img-fluid" src="assets\lab10\cceqs.jpg" alt="">
+                        <script src="https://gist.github.com/cwf54/b6f4d649ff6c9b9d072bf6bc2af3377f.js"></script>
+                        <p class="text-black-50 mb-0">The next function is the Odometry Motion Model, which uses the current and previous postions as well as the control information from Compute Control to output the probability that the robot is in a certain position.</p>
+                        <script src="https://gist.github.com/cwf54/502cc2a213815493f9f009709f99b5e7.js"></script>
+                        <p class="text-black-50 mb-0">Next, the Prediction Step takes the current and previous odometry readings (the TOF sensor data) to update the current position.</p>
+                        <script src="https://gist.github.com/cwf54/88397ea1f4b3e24cb9db8f4456700d69.js"></script>
+                        <p class="text-black-50 mb-0">The Sensor Model function returns the probabilities that the sensor measurements the robot collected were correct, given the robot's current pose. </p>
+                        <script src="https://gist.github.com/cwf54/4de2172b9d1ae882ede6cdafb2238af2.js"></script>
+                        <p class="text-black-50 mb-0">Finally, the Update Step updates the ultimate believed current position.</p>
+                        <script src="https://gist.github.com/cwf54/c7a6fa0d9f99516cf47fc471be45585d.js"></script>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3>Video</h3>
+                        <p class="text-black-50 mb-0">Now, we can run the simulated robot with this implementation through a preplanned trajectory. In the video, the plotter will show the odometry values, the ground truth, and the belief from the filter. With a successful Baye's filter, the belief points should be near the ground truth points. </p>
+                        <div style="position:relative;width:fit-content;height:fit-content;">
+                            <a style="position:absolute;top:20px;right:1rem;opacity:0.8;" href="https://clipchamp.com/watch/PFTu6stg6hz?utm_source=embed&utm_medium=embed&utm_campaign=watch">
+                                <img style="height:22px;" src="https://clipchamp.com/e.svg" alt="Made with Clipchamp" />
+                            </a>
+                            <iframe allow="autoplay;" allowfullscreen style="border:none" src="https://clipchamp.com/watch/PFTu6stg6hz/embed" width="640" height="360"></iframe>
+                        </div>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3></h3>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div> 
+                </div>
+            </section>
 
             <!-- Lab 9 -->
             <section class="resume-section" id="awards">
