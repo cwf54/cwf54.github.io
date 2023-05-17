@@ -74,14 +74,15 @@
                         <p class="text-black-50 mb-0">First, I ran the simulation with these functions to make sure that everything was set up correctly. Here is the plot from that:</p>
                         <img class="img-fluid" src="assets\lab11\simulation.jpg" alt="">
 
-                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0">The program should make the robot spin, get 18 equally spaced distance measurements, and use those measurements to guess where the robot is on the map. </p>
                         <p class="text-black-50 mb-0"> </p>
                         <p class="text-black-50 mb-0"> </p>
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
-                    <h3></h3>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
+                    <h3>Changing spinning method</h3>
+                        <p class="text-black-50 mb-0">First, I changed my Lab 9 code. That program gathered a variable amount of distance measurements, up to 200. I implemented a way for the robot to calculate its current yaw, and only take and store the TOF measurement every 20 degrees of rotation. This method still uses PID to control the angular speed of the robot as it spins. This is a much neater spin, because it spins 360 degrees, then stops.</p>
+                        <p class="text-black-50 mb-0">Here is the code: </p>
+                        <script src="https://gist.github.com/cwf54/198e097c791b83e60bc88ffff432b3d2.js"></script>
+                        <p class="text-black-50 mb-0">Here is a video of the spin:</p>
                         <p class="text-black-50 mb-0"> </p>
                         <p class="text-black-50 mb-0"> </p>
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
