@@ -66,7 +66,7 @@
 
             <section class="resume-section" id="lab11">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Lab 11: Localization (Real!)</h2>
+                    <h2 class="mb-5">Lab 11: Localization (Real!) [STILL IN PROGRESS]</h2>
                     <div class="flex-shrink-0"><span class="text-primary">May 4, 2023</span></div>
 
                     <h3></h3>
@@ -83,25 +83,41 @@
                         <p class="text-black-50 mb-0">Here is the code: </p>
                         <script src="https://gist.github.com/cwf54/198e097c791b83e60bc88ffff432b3d2.js"></script>
                         <p class="text-black-50 mb-0">Here is a video of the spin:</p>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
-                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
-                    <h3></h3>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
+                        <!-- spin video -->
+                        <p class="text-black-50 mb-0">Note that the robot spins in the counter clockwise direction.</p>
                         <p class="text-black-50 mb-0"> </p>
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
-                    <h3></h3>
-                        <p class="text-black-50 mb-0"> </p>
-                        <p class="text-black-50 mb-0"> </p>
+                    <h3>Passing Data through Observation Loop</h3>
+                        <p class="text-black-50 mb-0">The Artemis sends back 18 distances and their respective indexes. I used code from Ryan Chan's 2022 website to change the code to fit the given Observation Loop parameters: https://pages.github.coecis.cornell.edu/rc627/ECE-4960/lab12.html</p>
+                        <p class="text-black-50 mb-0">I use a notification handler like in all of the previous labs to receive the data in the Jupyter Notebook, but I could not find a way for the Observation Loop function to both call and receive the data. It wouldn't be able to wait for the notification handler to finish or acknowledge that the global variables existed. Thanks to the advice of the TAs, I decided to call the spin command and store the data outside of the Observation Loop function, and then return the already saved data. Here are these external code blocks and the very simple function:</p>
+                        <!-- CODE -->
                         <p class="text-black-50 mb-0"> </p>
                         <p class="text-black-50 mb-0"> </p>
                         <p class="text-black-50 mb-0"> </p>
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
-                    <h3></h3>
+                    <h3>Running the Localization Commands</h3> 
+                        <p class="text-black-50 mb-0">With the program implemented, I put the robot in the map and tried it out. Astoundingly, the first two spots that I tried gave me no problems. They correctly guessed the position of the robot. Here are the maps from these runs:</p>
+                        <img class="img-fluid" src="assets\lab11\n3n2map.jpg" alt="">
+                        <img class="img-fluid" src="assets\lab11\03mapTry2.jpg" alt="">
+                        <!-- add lab 9 plots -->
+                        <p class="text-black-50 mb-0">These maps show both the Ground Truth and Belief positions of the robot, but since they are the same positions, only 1 dot is shown. Both of these runs were done with the robot starting facing "up."</p>
+                        <p class="text-black-50 mb-0">For the third position I tried, it first guessed incorrectly:</p>
+                        <img class="img-fluid" src="assets\lab11\5n3mapTry1.jpg" alt="">
+                        <p class="text-black-50 mb-0">The Ground Truth is in green, and the Belief is in blue. I wondered if starting with the robot facing the walls would help the program identify that the robot is in a corner, so I tried another run with the robot facing "down" - recall that the robot spins counter clockwise. </p>
+                        <p class="text-black-50 mb-0">This run made the Belief correct!</p>
+                        <img class="img-fluid" src="assets\lab11\5n3mapTry2.jpg" alt="">
+                        <p class="text-black-50 mb-0">For the last position, I was not so lucky. I tried several runs with different starting orientations, and the program would guess a position near the Ground Truth, but never the exact Ground Truth. Here is one of those guesses:</p>
+                        <img class="img-fluid" src="assets\lab11\53maptry1.jpg" alt="">
+                        <p class="text-black-50 mb-0">I was puzzled by this, because the distance measurements plotted accurate wall measurements like the other runs. After spending a good amount of time trying to get a good run however, I decided it was time to move on to lab 12. </p>
                         <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3>Final Map</h3>
+                        <p class="text-black-50 mb-0">Just for fun, here is the final map of the room from these runs. It is worth noting that this is way better than my map from Lab 9. </p>
+                        <!-- lab 9 map -->
                         <p class="text-black-50 mb-0"> </p>
                         <p class="text-black-50 mb-0"> </p>
                         <p class="text-black-50 mb-0"> </p>
