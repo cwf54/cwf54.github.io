@@ -81,16 +81,17 @@
                     <p class="text-black-50 mb-0"> </p>
 
                     <h3>Feedback Control with PID</h3>
-                        <p class="text-black-50 mb-0"> To move the robot forward, I used the same PID function from lab 6. I also created a backwards movement function, because there are some points on the map where wall the robot is facing is too far to make an accurate distance measurement, but the opposite wall from the robot is much closer (like right in the beginning.)</p>
+                        <p class="text-black-50 mb-0"> To move the robot forward, I used the same PID function from lab 6. I also created a backwards movement function, because there are some points on the map where the wall the robot is facing is too far to make an accurate distance measurement, but the opposite wall from the robot is much closer (like right in the beginning.) This need for backward PID will be discussed more later. </p>
                         <p class="text-black-50 mb-0">Here are the translational PID functions in my Arduino script. The only difference between the forward and backward functions is which motors are set with nonzero pwm:</p>
-                        <script src="https://gist.github.com/cwf54/0ecc6612dde6f82ff6dae639f9fb6f67.js"></script>                        <p class="text-black-50 mb-0">To rotate the robot, I tweaked the spin function from lab 11 to have customizable goal angles. I also took out the TOF distance readings, since I am not mapping or localizing. Here is the rotate function:</p>
+                        <script src="https://gist.github.com/cwf54/0ecc6612dde6f82ff6dae639f9fb6f67.js"></script>                        
+                        <p class="text-black-50 mb-0">To rotate the robot, I tweaked the spin function from lab 11 to have customizable goal angles. I also took out the TOF distance readings, since I am not mapping or localizing. </p>
                         <p class="text-black-50 mb-0">I also decided to create both a counter-clockwise spin and clockwise spin implementation, so that the robot would never have to turn more than 180 degreed. The larger the turn, the more room for error. </p>
+                        <p class="text-black-50 mb-0">Here is the rotate function:</p>
                         <script src="https://gist.github.com/cwf54/b51588691af54ecb96985a9e696b90f6.js"></script>
                         <p class="text-black-50 mb-0">Here are these PID controls working.</p>
-                        <p class="text-black-50 mb-0"></p>
                     <div class="flex-shrink-0"><span class="text-primary"></span></div>
                     <h3>Translational Movement</h3>
-<iframe width="711" height="400" src="https://www.youtube.com/embed/nVVl5Mbftxw" title="Translational PID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                    <p class="text-black-50 mb-0">Code ran in Python:</p>
+                    <iframe width="711" height="400" src="https://www.youtube.com/embed/nVVl5Mbftxw" title="Translational PID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                    <p class="text-black-50 mb-0">Code ran in Python:</p>
                     <script src="https://gist.github.com/cwf54/fc769ddd24498953d2a1b0895ae1cb74.js"></script>                    
                     <p class="text-black-50 mb-0">In lab 6, I set up the PID function to run for 15 seconds, because if I let the function stop when it reached the goal distance, it might not correct itself if it overshot the movement. These movements are not as long as the 2-3 meter long stretch that the robot would move in lab 6, so I probably should have shortened the timer.</p>
 
