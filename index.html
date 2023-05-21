@@ -99,8 +99,7 @@
                     <iframe width="711" height="400" src="https://www.youtube.com/embed/EMgEOXvkKNQ" title="Spin PID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     <p class="text-black-50 mb-0">Code ran in Python:</p>
                     <script src="https://gist.github.com/cwf54/4ae7f8f887cf270d47dfe536005ae905.js"></script>
-                    <p class="text-black-50 mb-0">For some reason, the different directions use different ranges of Kp, the proportional constant. In general, I used larger Kp values for larger rotations. I experimented with all of the rotations, and these were usually accurate, but they worked best on a fully charged battery. </p>
-                    <p class="text-black-50 mb-0">Notably, most of the rotation commands do not use the exact angle that is between the two points. For example, when I want to turn to 270 degrees, I pass 260 into the command. All of these turns I tested experimentally, and these were the spinning commands that I found worked most of the time with a fully charged battery. </p>
+                    <p class="text-black-50 mb-0">For some reason, the different directions use different ranges of Kp, the proportional constant. In general, I used larger Kp values for larger rotations. Also, most of the goal degree inputs are not the exact same number as the desired goal. I experimented with all of the rotations, and these were usually accurate, but they worked best on a fully charged battery. </p>
 
 
                     <h3>First Try through the Map</h3>
