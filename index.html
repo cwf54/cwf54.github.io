@@ -26,6 +26,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#lab12">Lab 12: Planning and Execution</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#lab11">Lab 11: Localization (Real)</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#lab10">Lab 10: Localization Simulator</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#lab9">Lab 9: Mapping</a></li>
@@ -63,6 +64,77 @@
                 </div>
             </section>
             <hr class="m-0" />
+
+            <!-- LAB 12--> 
+            <section class="resume-section" id="lab12">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Lab 12: Planning and Execution</h2>
+                    <div class="flex-shrink-0"><span class="text-primary">May 20, 2023</span></div>
+
+                    <p class="text-black-50 mb-0">The task of this final lab is to get the robot through a specific path on the map using all of the skills concepts that we have learned this semesters. </p>
+                    <img class="img-fluid" src="assets\lab12\map.jpg" alt="">
+                    <img class="img-fluid" src="assets\lab12\points.jpg" alt="">
+                    <p class="text-black-50 mb-0">Although I felt that localization went well with my robot, I did not have enough time to create a program that would use localization to navigate the map. I decided to use a Feedback Control loop with position control PID to translate the robot on the map, and orientation control PID to rotate the robot. </p>
+                    <p class="text-black-50 mb-0"> </p>
+                    <p class="text-black-50 mb-0"> </p>
+                    <p class="text-black-50 mb-0"> </p>
+                    <p class="text-black-50 mb-0"> </p>
+
+                    <h3>Feedback Control with PID</h3>
+                        <p class="text-black-50 mb-0"> To move the robot forward, I used the same PID function from lab 6. I also created a backwards movement function, because there are some points on the map where wall the robot is facing is too far to make an accurate distance measurement, but the opposite wall from the robot is much closer (like right in the beginning.)</p>
+                        <p class="text-black-50 mb-0">Here are the translational PID functions in my Arduino script. The only difference between the forward and backward functions is which motors are set with nonzero pwm:</p>
+                        <script src="https://gist.github.com/cwf54/0ecc6612dde6f82ff6dae639f9fb6f67.js"></script>                        <p class="text-black-50 mb-0">To rotate the robot, I tweaked the spin function from lab 11 to have customizable goal angles. I also took out the TOF distance readings, since I am not mapping or localizing. Here is the rotate function:</p>
+                        <p class="text-black-50 mb-0">I also decided to create both a counter-clockwise spin and clockwise spin implementation, so that the robot would never have to turn more than 180 degreed. The larger the turn, the more room for error. </p>
+                        <script src="https://gist.github.com/cwf54/b51588691af54ecb96985a9e696b90f6.js"></script>
+                        <p class="text-black-50 mb-0">Here are these PID controls working.</p>
+                        <p class="text-black-50 mb-0"></p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3>Translational Movement</h3>
+<iframe width="711" height="400" src="https://www.youtube.com/embed/nVVl5Mbftxw" title="Translational PID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                    <p class="text-black-50 mb-0">Code ran in Python:</p>
+                    <script src="https://gist.github.com/cwf54/fc769ddd24498953d2a1b0895ae1cb74.js"></script>                    
+                    <p class="text-black-50 mb-0">In lab 6, I set up the PID function to run for 15 seconds, because if I let the function stop when it reached the goal distance, it might not correct itself if it overshot the movement. These movements are not as long as the 2-3 meter long stretch that the robot would move in lab 6, so I probably should have shortened the timer.</p>
+
+                    <h3>Rotational Movement</h3>
+                    <iframe width="711" height="400" src="https://www.youtube.com/embed/EMgEOXvkKNQ" title="Spin PID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <p class="text-black-50 mb-0">Code ran in Python:</p>
+                    <script src="https://gist.github.com/cwf54/4ae7f8f887cf270d47dfe536005ae905.js"></script>
+                    <p class="text-black-50 mb-0">For some reason, the different directions use different ranges of Kp, the proportional constant. In general, I used larger Kp values for larger rotations. I experimented with all of the rotations, and these were usually accurate, but they worked best on a fully charged battery. </p>
+                    <p class="text-black-50 mb-0">Notably, most of the rotation commands do not use the exact angle that is between the two points. For example, when I want to turn to 270 degrees, I pass 260 into the command. All of these turns I tested experimentally, and these were the spinning commands that I found worked most of the time with a fully charged battery. </p>
+
+
+                    <h3>First Try through the Map</h3>
+                        <p class="text-black-50 mb-0">At first, I tried to take the shortest path to each next point on the map, and all of the robot translations would be done with the TOF sensor at the front of the body. On my first try, this proved to be a bad idea. When going from point 1 to point 2, the robot would go off full speed towards the wall across the room. I realized that even though the range of the TOF sensor should be 4 meters, the distance to the opposite wall is too far to reliably move forward. </p>
+                        <img class="img-fluid" src="assets\lab12\backwards.jpg" alt="">
+                        <p class="text-black-50 mb-0">I also thought that getting from position 2 to 3 and 5 to 6 would be too risky. Conveniently, although all of these translations are facing walls that are a bit far away, the walls behind them are much closer.  I decided that for all of these legs, I would use have the robot move backwards so that the wall distance it was comparing its distance to during PID would be much shorter.  </p>
+                        <p class="text-black-50 mb-0">I decided also that starting the map with a rotation of 45 degrees was risky. If the rotation is a little bit off, all of the rest of the translations and rotations will be offset as well. For this reason, I went from position 1 to position 2 by going forward for 2 feet, rotating 90 degrees, then going left for 2 feet. All of the other paths use the shortest path however. </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3>Planned Commands</h3>
+                        <p class="text-black-50 mb-0">Here are the functions that I call while the robot moves through the maps. </p>
+                        <script src="https://gist.github.com/cwf54/e46a77909bfeb16de5f836d548233625.js"></script>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3>Best Run</h3>
+                        <p class="text-black-50 mb-0">Unfortunately, I could not get a video of the robot getting through the entire map, but I got a good run to about the halfway point, and then starting from the halfway point. Here are those videos together. Recall that every translation has a 15 second timer before the next command can be sent. </p>
+                        <!-- video -->
+                        <p class="text-black-50 mb-0">At the end, the I have to intervene and send some custom commands to get the robot to (0,3). I also accidentally sent the wrong direction turn, so I had to continue intervening. Still, it did get to (0,3) eventually, and then had a pretty smooth landing to (0,0). </p>
+
+                        <p class="text-black-50 mb-0">Even though it took two parts, I am satisfied with how precise the spins and translations are. The day before, the robot was missing most of the goal positions, because either the spin was wrong or the translations would veer to a side.</p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    <h3>Final Remarks</h3>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                        <p class="text-black-50 mb-0"> </p>
+                    <div class="flex-shrink-0"><span class="text-primary"></span></div> 
+                </div>
+            </section>
 
             <section class="resume-section" id="lab11">
                 <div class="resume-section-content">
